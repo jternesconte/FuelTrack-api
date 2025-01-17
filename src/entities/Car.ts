@@ -15,5 +15,14 @@ export class Car {
   year: string;
 
   @Column({ type: "varchar", length: 100, nullable: false })
-  category: string
+  category: string;
+
+  @Column({ type: "decimal", precision: 12, scale: 1, default: 0, nullable: false })
+  km: number;
+
+  @Column({ name: 'fuel_capacity', type: "varchar", length: 100, nullable: false })
+  fuelCapacity: number;
+
+  @Column({ name: 'remaining_fuel', type: "varchar", length: 100, nullable: false })
+  remainingFuel: number;
 }

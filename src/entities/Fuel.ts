@@ -1,6 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Car } from "./Car";
-import { format, isValid, parse } from "date-fns";
 
 @Entity('fuel')
 export class Fuel {

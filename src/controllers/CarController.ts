@@ -14,8 +14,7 @@ export class CarController {
             year,
             category,
             km,
-            fuelCapacity,
-            remainingFuel
+            fuelCapacity
          }
 
          await carRepository.saveCar(car);

@@ -10,6 +10,7 @@ export const fuelRepository = AppDataSource.getRepository(Fuel).extend({
       price: data.price,
       liters: data.liters,
       distanceTraveled: data.distanceTraveled,
+      averageLastRoute: data.averageLastRoute,
       date: data.date
    });
 

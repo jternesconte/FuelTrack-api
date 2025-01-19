@@ -22,7 +22,4 @@ export class Car {
 
   @Column({ name: 'fuel_capacity', type: "varchar", length: 100, nullable: false })
   fuelCapacity: number;
-
-  @Column({ name: 'remaining_fuel', type: "varchar", length: 100, nullable: false })
-  remainingFuel: number;
 }

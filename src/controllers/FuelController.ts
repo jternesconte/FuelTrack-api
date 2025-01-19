@@ -16,16 +16,17 @@ export class FuelController {
         return;
       }
       
-      let remainingFuel: number;
       let averageLastRoute: number;
       let usedFuel: number;
 
-      remainingFuel = car.fuelCapacity-liters;
       usedFuel = liters;
       averageLastRoute = parseFloat((distanceTraveled / liters).toFixed(2));
 
-      car.remainingFuel = remainingFuel;
-      car.km = parseFloat(parseFloat(car.km + distanceTraveled).toFixed(1));
+      car.km = Number(car.km) || 0;
+      car.km = Number((car.km + distanceTraveled).toFixed(1));
+
+      console.log(car.km)
+      console.log(distanceTraveled)
 
       await carRepository.save(car);
 

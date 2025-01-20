@@ -22,4 +22,7 @@ export class Car {
 
   @Column({ name: 'fuel_capacity', type: "varchar", length: 100, nullable: false })
   fuelCapacity: number;
+
+  @Column({ type: "bytea", nullable: true })
+  image: Buffer;
 }

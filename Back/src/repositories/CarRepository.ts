@@ -10,7 +10,8 @@ export const carRepository = AppDataSource.getRepository(Car).extend({
       year: data.year,
       km: data.km,
       category: data.category,
-      fuelCapacity: data.fuelCapacity
+      fuelCapacity: data.fuelCapacity,
+      image: data.image ?  data.image : undefined
    });
 
    return this.save(car);

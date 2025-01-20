@@ -25,9 +25,6 @@ export class FuelController {
       car.km = Number(car.km) || 0;
       car.km = Number((car.km + distanceTraveled).toFixed(1));
 
-      console.log(car.km)
-      console.log(distanceTraveled)
-
       await carRepository.save(car);
 
       const fuel: IFuel = {

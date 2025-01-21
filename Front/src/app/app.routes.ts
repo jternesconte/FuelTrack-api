@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './features/home-page/home-page.component';
+import { CarProfileComponent } from './features/car-profile/car-profile.component';
 
 export const routes: Routes = [
    {
       path: '',
-      component: HomePageComponent
+      component: CarProfileComponent
    }
 ];

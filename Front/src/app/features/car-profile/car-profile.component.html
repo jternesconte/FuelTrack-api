@@ -1,40 +1,18 @@
-<div class="p-grid p-justify-center p-mt-5">
-  <div class="p-col-12 p-md-8">
-    <p-card styleClass="p-shadow-3">
-      <img 
-        src="assets/car-image.jpg" 
-        alt="Carro" 
-        class="car-image"
-      />
-    </p-card>
-  </div>
+<div class="flex flex-col gap-10">
+  <p-card class="flex flex-row justify-center w-full" [header]="car.model + ' ' + car.engine">
+    <img [src]="car.image" alt="Car Image" class="h-52 w-52 object-cover">
+  </p-card>
 
-  <div class="p-col-12 p-md-4">
-    <p-card styleClass="p-shadow-3">
-      <ng-template pTemplate="title">Informações do Carro</ng-template>
-      <ng-template pTemplate="content">
-        <p><b>Model:</b> Modelo do Carro</p>
-        <p><b>Engine:</b> Preto</p>
-        <p><b>Year:</b> 2023</p>
-        <p><b>Category:</b> R$ 100.000,00</p>
-        <p><b>KM:</b> R$ 100.000,00</p>
-        <p><b>Fuel Capacity:</b> R$ 100.000,00</p>
-      </ng-template>
+  <div class="flex flex-row justify-center gap-10">
+    <p-card>
+      <p class="text-black"><b>Year:</b> {{ car.year }}</p>
+      <p class="text-black"><b>Category:</b> {{ car.category }}</p>
+      <p class="text-black"><b>KM:</b> {{ car.km }}</p>
+      <p class="text-black"><b>Fuel Capacity:</b> {{ car.fuelCapacity }}</p>
     </p-card>
-  </div>
-
-  <div class="p-col-12 p-md-4">
-    <p-card styleClass="p-shadow-3">
-      <ng-template pTemplate="title">Mais informações</ng-template>
-      <ng-template pTemplate="content">
-        <p-carousel  [numVisible]="1" [numScroll]="1">
-          <ng-template let-info pTemplate="item">
-            <div class="p-text-center p-mb-3">
-              <p>{{ info }}</p>
-            </div>
-          </ng-template>
-        </p-carousel>
-      </ng-template>
+    
+    <p-card header="Last Month Km/L Average">
+      <p class="text-center text-2xl"><b>{{ lastMonthInfo.averageConsumption }}</b></p>
     </p-card>
   </div>
 </div>

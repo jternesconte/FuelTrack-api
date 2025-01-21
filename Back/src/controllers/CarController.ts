@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ICar } from '../interfaces/ICar';
 import { carRepository } from '../repositories/CarRepository';
+import { bufferToBase64 } from '../utils/BufferToBase64';
 
 export class CarController {
 
@@ -36,7 +37,13 @@ export class CarController {
             return;
          }
 
-         res.status(200).json(car);
+         const carResponse = { ...car };
+
+         if(car.image) {
+            carResponse.image = bufferToBase64(car.image as Buffer);
+         }
+
+         res.status(200).json(carResponse);
       } catch {
          res.status(500).json({ error: 'Error in car search' });
       }

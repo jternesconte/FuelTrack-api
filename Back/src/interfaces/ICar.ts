@@ -6,5 +6,5 @@ export interface ICar {
   category: string;
   km: number
   fuelCapacity: number;
-  image?: Buffer;
+  image?: Buffer | string;
 }

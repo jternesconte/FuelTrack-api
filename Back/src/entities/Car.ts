@@ -24,5 +24,5 @@ export class Car {
   fuelCapacity: number;
 
   @Column({ type: "bytea", nullable: true })
-  image: Buffer;
+  image: Buffer | string;
 }

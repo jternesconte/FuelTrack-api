@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { carRepository } from '../repositories/CarRepository';
 import { IFuel } from '../interfaces/IFuel';
 import { fuelRepository } from '../repositories/FuelRepository';
+import { Between } from 'typeorm';
 
 export class FuelController {
 
@@ -40,8 +41,48 @@ export class FuelController {
 
       res.status(200).json({ car, fuel });
     } catch (error) {    
-      console.error(error);
       res.status(500).json({ error: 'Error in fuel creation' });
+    }
+  }
+
+  async averageCurrentMonth(req: Request, res: Response) {
+    try {
+      const { carId } = req.params;
+
+      const currentMonthStartDate = new Date();
+      currentMonthStartDate.setDate(1);
+      currentMonthStartDate.setHours(0, 0, 0, 0);
+
+      const currentMonthEndDate = new Date(currentMonthStartDate);
+      currentMonthEndDate.setMonth(currentMonthEndDate.getMonth() + 1);
+      currentMonthEndDate.setDate(0);
+      currentMonthEndDate.setHours(23, 59, 59, 999);
+
+      const fuels = await fuelRepository.find({
+        where: {
+          car: { id: Number(carId) },
+          date: Between(currentMonthStartDate, currentMonthEndDate),
+        },
+        relations: ['car'],
+      });
+
+      if (fuels.length === 0) {
+        res.status(404).json({ message: 'No fuel data found for the current month.' });
+        return
+      }
+
+      const totalLiters = Number(fuels.reduce((sum, fuel) => sum + fuel.liters, 0));
+      const totalDistance = Number(fuels.reduce((sum, fuel) => sum + (fuel.distanceTraveled || 0), 0));
+      const averageConsumption = Number((totalDistance / totalLiters).toFixed(2));
+
+      res.status(200).json({
+        averageConsumption: isNaN(averageConsumption) ? 0 : averageConsumption,
+        totalLiters,
+        totalDistance
+      });
+
+    } catch (error) {
+      res.status(500).json({ error: 'Error calculating the average consumption for the current month.' });
     }
   }
 

@@ -1,0 +1,9 @@
+::ng-deep .p-card {
+   background: white !important;
+   color: black !important;
+}
+
+::ng-deep .p-card-title {
+   color: black !important;
+   text-align: center !important;
+}

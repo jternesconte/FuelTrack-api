@@ -71,9 +71,18 @@ export class FuelController {
         return
       }
 
-      const totalLiters = Number(fuels.reduce((sum, fuel) => sum + fuel.liters, 0));
-      const totalDistance = Number(fuels.reduce((sum, fuel) => sum + (fuel.distanceTraveled || 0), 0));
-      const averageConsumption = Number((totalDistance / totalLiters).toFixed(2));
+      let totalLiters: number = 0;
+      let totalDistance: number = 0;
+      let averageConsumption: number = 0;
+      
+      fuels.forEach(fuel => {
+        totalLiters = totalLiters + Number(fuel.liters);
+        totalDistance = totalDistance + Number(fuel.distanceTraveled);
+        averageConsumption = averageConsumption + Number(fuel.averageLastRoute);
+      })
+
+      averageConsumption = averageConsumption / fuels.length;
+
 
       res.status(200).json({
         averageConsumption: isNaN(averageConsumption) ? 0 : averageConsumption,

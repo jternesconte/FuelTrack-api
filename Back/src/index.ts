@@ -3,6 +3,7 @@ import { AppDataSource } from './data-source';
 import { carRoutes } from './routes/CarRoutes';
 import { fuelRoutes } from './routes/FuelRoutes';
 import cors from 'cors';
+import { userRoutes } from './routes/UserRoutes';
 
 AppDataSource.initialize().then(() => {
    const app = express();
@@ -20,6 +21,7 @@ AppDataSource.initialize().then(() => {
 
    app.use('/api/car', carRoutes);
    app.use('/api/fuel', fuelRoutes);
+   app.use('/api/user', userRoutes)
 
    return app.listen(process.env.PORT);
 });

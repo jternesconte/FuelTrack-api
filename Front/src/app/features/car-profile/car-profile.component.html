@@ -14,7 +14,7 @@
         </div>
       </p-card>
   
-      <p-card header="Last Month Information" class="w-96">
+      <p-card header="Last Month Information" class="w-96" *ngIf="isCarousel()">
         <p-carousel
           [value]="carouselData"
           [numVisible]="1"
@@ -23,12 +23,10 @@
           [showIndicators]="true">
   
           <ng-template pTemplate="item" let-item>
-            <p-card>
               <div class="flex flex-col text-center">
                 <h3 class="font-medium text-lg">{{ item.title }}</h3>
                 <p class="text-base">{{ item.value }}</p>
               </div>
-            </p-card>
           </ng-template>
         </p-carousel>
       </p-card>

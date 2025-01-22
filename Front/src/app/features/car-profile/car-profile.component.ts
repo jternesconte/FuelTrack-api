@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { CarService } from '../../shared/services/car.service';
 import { CarDto } from '../../shared/interfaces/CarDto';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { FuelService } from '../../shared/services/fuel.service';
 import { CommonModule } from '@angular/common';
 
@@ -27,9 +27,9 @@ export interface CarouselData {
 export class CarProfileComponent implements OnInit {
 
   carObservable!: Observable<CarDto>;
-  car!: CarDto;
   lastMonthInfo!: LastMonthData;
   carouselData: CarouselData[] = [];
+  isCarousel = signal<boolean>(false);
 
   constructor(
     private carService: CarService,
@@ -40,18 +40,11 @@ export class CarProfileComponent implements OnInit {
       this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
       this.carouselData.push({title: 'Distance Traveled', value: r.totalDistance});
       this.carouselData.push({title: 'Liters used', value: r.totalLiters});
+      this.isCarousel.set(true);
     })
   }
 
   ngOnInit() {
-    this.carObservable.subscribe({
-      next: (value) => {
-          this.car = value;
-      },
-      error: (error) => {
-        error
-      }
-    })
   }
 
   getCarInfo() {

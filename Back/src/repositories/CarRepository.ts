@@ -5,6 +5,7 @@ import { ICar } from "../interfaces/ICar";
 export const carRepository = AppDataSource.getRepository(Car).extend({
  async saveCar(data: ICar): Promise<Car> {
    const car = this.create({
+      user: data.user,
       model: data.model,
       engine: data.engine,
       year: data.year,

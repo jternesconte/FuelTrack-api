@@ -81,6 +81,8 @@ export class FuelController {
         averageConsumption = averageConsumption + Number(fuel.averageLastRoute);
       })
 
+      totalLiters = Number(totalLiters.toFixed(2));
+      totalDistance = Number(totalDistance.toFixed(1));
       averageConsumption = averageConsumption / fuels.length;
 
 

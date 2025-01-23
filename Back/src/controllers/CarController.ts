@@ -2,14 +2,24 @@ import { Request, Response } from 'express';
 import { ICar } from '../interfaces/ICar';
 import { carRepository } from '../repositories/CarRepository';
 import { bufferToBase64 } from '../utils/BufferToBase64';
+import { userRepository } from '../repositories/UserRepository';
 
 export class CarController {
 
    async newCar(req: Request, res: Response) {
       try {
          const { model, engine, year, category, km, fuelCapacity, image} = req.body;
+         const { userId } = req.params;
          
+         const existentUser = await userRepository.findOneBy({ id: Number(userId) });
+
+         if(!existentUser) {
+            res.status(404).json({ error: 'User not found with id: ' + userId });
+            return;
+         }
+
          const car: ICar = {
+            user: existentUser,
             model,
             engine,
             year,
@@ -46,6 +56,32 @@ export class CarController {
          res.status(200).json(carResponse);
       } catch {
          res.status(500).json({ error: 'Error in car search' });
+      }
+   }
+
+   async getUserCars(req: Request, res: Response) {
+      try {
+
+         if(!req.user?.id) {
+            res.status(404).json({ error: 'user id not received' });
+            return;
+         }
+
+         const userCars = await carRepository.find({
+            where: {
+               user: { id: req.user?.id },
+            },
+            relations: ['user'],
+         });
+
+        if(userCars.length === 0) {
+         res.status(200).json([]);
+        } else {
+         res.status(200).json(userCars);
+        }
+
+      } catch {
+         res.status(500).json({ error: 'Error in cars search' });
       }
    }
 }

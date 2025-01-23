@@ -1,9 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from "typeorm";
+import { User } from "./User";
 
 @Entity("car")
 export class Car {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @ManyToOne(() => User, { nullable: false })
+  @JoinColumn({ name: "user_id", referencedColumnName: 'id' })
+  user: User;
 
   @Column({ type: "varchar", length: 100, nullable: false })
   model: string;

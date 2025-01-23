@@ -1,5 +1,7 @@
+import { IUser } from "./IUser";
 
 export interface ICar {
+  user: IUser
   model: string;
   engine: string;
   year: string;

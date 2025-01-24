@@ -1,0 +1,12 @@
+<div class="flex justify-center items-center h-full">
+  <p-card class="h-96" [header]="'Login'">
+      <div class="flex flex-col gap-4 h-full w-96">
+        <input pInputText formControlName="name" placeholder="Username" />
+        <input pInputText formControlName="email" placeholder="Email" />
+        <input pInputText formControlName="password" placeholder="Password" />
+        <input pInputText formControlName="password2" placeholder="Repeat password" />
+      </div>
+
+      <p>Dont have an account? <a href="/register">Create here</a></p>
+  </p-card>
+</div>

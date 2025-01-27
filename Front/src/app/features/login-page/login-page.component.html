@@ -1,12 +1,38 @@
-<div class="flex justify-center items-center h-full">
-  <p-card class="h-96" [header]="'Login'">
-      <div class="flex flex-col gap-4 h-full w-96">
-        <input pInputText formControlName="name" placeholder="Username" />
-        <input pInputText formControlName="email" placeholder="Email" />
-        <input pInputText formControlName="password" placeholder="Password" />
-        <input pInputText formControlName="password2" placeholder="Repeat password" />
-      </div>
-
-      <p>Dont have an account? <a href="/register">Create here</a></p>
-  </p-card>
+<div class="bg-white">
+  <p-tabs [value]="0">
+    <p-tablist>
+      <p-tab [value]="0">Sign-in</p-tab>
+      <p-tab [value]="1">Sign-on</p-tab>
+    </p-tablist>
+    <p-tabpanels>
+  
+      <p-tabpanel [value]="0">
+        <div class="flex justify-center items-center h-full">
+          <p-card class="h-96" [header]="'Login'">
+              <div class="flex flex-col gap-4 h-full w-96">
+                <input type="text" pInputText formControlName="email" placeholder="Email" />
+                <input type="text" pInputText formControlName="password" placeholder="Password" />
+              </div>
+  
+              <p-button label="Submit" (onClick)="onLoginSubmit()"/>
+          </p-card>
+        </div>
+      </p-tabpanel>
+  
+      <p-tabpanel [value]="1">
+        <div class="flex justify-center items-center h-full">
+          <p-card class="h-96" [header]="'Login'">
+              <div class="flex flex-col gap-4 h-full w-96">
+                <input type="text" pInputText formControlName="name" placeholder="Username" />
+                <input type="text" pInputText formControlName="email" placeholder="Email" />
+                <input type="text" pInputText formControlName="password" placeholder="Password" />
+                <input type="text" pInputText formControlName="password2" placeholder="Confirm password" />
+              </div>
+  
+              <p-button label="Submit" (onClick)="onRegisterSubmit()"/>
+          </p-card>
+        </div>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
 </div>

@@ -6,6 +6,7 @@ import { CarDto } from '../../shared/interfaces/CarDto';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FuelService } from '../../shared/services/fuel.service';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 export interface LastMonthData {
   averageConsumption: number;
@@ -21,7 +22,7 @@ export interface CarouselData {
 @Component({
   selector: 'app-car-profile',
   templateUrl: './car-profile.component.html',
-  styleUrls: ['./car-profile.component.css'],
+  styleUrls: ['./car-profile.component.css', '../../../styles.css'],
   imports: [CardModule, CarouselModule, CommonModule]
 })
 export class CarProfileComponent implements OnInit {
@@ -30,12 +31,15 @@ export class CarProfileComponent implements OnInit {
   lastMonthInfo!: LastMonthData;
   carouselData: CarouselData[] = [];
   isCarousel = signal<boolean>(false);
+  carId!: number;
 
   constructor(
     private carService: CarService,
-    private fuelService: FuelService) {
-    this.carObservable =  this.carService.getCarById(8);
-    this.fuelService.getCarData(8).subscribe(r => {
+    private fuelService: FuelService,
+    private route: ActivatedRoute) {
+    this.carId = route.snapshot.params['carId'];
+    this.carObservable =  this.carService.getCarById(this.carId);
+    this.fuelService.getCarData(this.carId).subscribe(r => {
       this.lastMonthInfo = r;
       this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
       this.carouselData.push({title: 'Distance Traveled', value: r.totalDistance});

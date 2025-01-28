@@ -7,3 +7,8 @@
 ::ng-deep .p-inputtext {
    background: none !important;
 }
+
+::ng-deep .p-tab {
+   width: 50% !important;
+   justify-content: center !important;
+}

@@ -1,4 +1,4 @@
-<div class="bg-white">
+<div class="bg-white flex justify-center items-center">
   <p-tabs [value]="0">
     <p-tablist>
       <p-tab [value]="0">Sign-in</p-tab>
@@ -8,10 +8,10 @@
   
       <p-tabpanel [value]="0">
         <div class="flex justify-center items-center h-full">
-          <p-card class="h-96" [header]="'Login'">
+          <p-card class="h-96" [header]="'Sign-in '">
               <div class="flex flex-col gap-4 h-full w-96">
-                <input type="text" pInputText formControlName="email" placeholder="Email" />
-                <input type="text" pInputText formControlName="password" placeholder="Password" />
+                <input type="text" pInputText formControlName="email" />
+                <input type="text" pInputText formControlName="password"/>
               </div>
   
               <p-button label="Submit" (onClick)="onLoginSubmit()"/>
@@ -21,12 +21,12 @@
   
       <p-tabpanel [value]="1">
         <div class="flex justify-center items-center h-full">
-          <p-card class="h-96" [header]="'Login'">
+          <p-card class="h-96" [header]="'Sign-up'">
               <div class="flex flex-col gap-4 h-full w-96">
-                <input type="text" pInputText formControlName="name" placeholder="Username" />
-                <input type="text" pInputText formControlName="email" placeholder="Email" />
-                <input type="text" pInputText formControlName="password" placeholder="Password" />
-                <input type="text" pInputText formControlName="password2" placeholder="Confirm password" />
+                <input type="text" pInputText formControlName="name" />
+                <input type="text" pInputText formControlName="email" />
+                <input type="text" pInputText formControlName="password"/>
+                <input type="text" pInputText formControlName="password2" />
               </div>
   
               <p-button label="Submit" (onClick)="onRegisterSubmit()"/>

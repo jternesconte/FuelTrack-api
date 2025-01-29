@@ -6,9 +6,19 @@
 
 ::ng-deep .p-inputtext {
    background: none !important;
+   padding: 0px !important;
+   width: 100% !important;
 }
 
 ::ng-deep .p-tab {
    width: 50% !important;
    justify-content: center !important;
+}
+
+::ng-deep .p-card-body { 
+   gap: 24px !important;
+}
+
+::ng-deep .p-password {
+   width: 100% !important;
 }

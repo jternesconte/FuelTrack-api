@@ -44,14 +44,15 @@ export class LoginPageComponent implements OnInit {
     private userService: UserService
   ) {
     this.formGroup = this.fb.group({
-      name:['', Validators.required],
-      email: ['',Validators.required],
-      password: ['',Validators.required],
-      password2: ['', Validators.required]
+      name:[''],
+      email: [''],
+      password: [''],
+      password2: ['']
     });
   }
 
   ngOnInit() {
+    
   }
 
   onLoginSubmit() {
@@ -64,8 +65,11 @@ export class LoginPageComponent implements OnInit {
     this.userService.userLogin(this.loginData).subscribe({
       next: (value) => {
           console.log(value)
+          localStorage.setItem('token', value['token'])
       },
     })
+
+    console.log(localStorage.getItem('token'))
   }
 
   onRegisterSubmit() {

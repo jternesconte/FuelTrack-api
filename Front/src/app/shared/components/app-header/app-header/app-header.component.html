@@ -1,12 +1,12 @@
 <p-toolbar>
-  <ng-template #start>
+  <ng-template #start class="flex w-full justify-between">
       <div class="flex items-center gap-2">
           <img src="assets/images/car-icon.png" alt="Car icon" class="w-10 h-10">
-          <p-button label="Profile" text plain />
+          <p-button label="Cars" text plain />
           <p-button label="Fuel" text plain />
       </div>
-  </ng-template>
-
-  <ng-template #end>
+      <div>
+        <p-button label="Logout" text plain></p-button>
+      </div>
   </ng-template>
 </p-toolbar>

@@ -12,7 +12,7 @@ type JwtPayload ={
 export class UserController {
 
 
-   async newCadastro(req: Request, res: Response) {
+   async newRegister(req: Request, res: Response) {
       try {
          const { name, email, password, password2 } = req.body;
 

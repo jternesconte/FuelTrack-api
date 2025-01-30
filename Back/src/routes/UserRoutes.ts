@@ -4,7 +4,7 @@ import { authenticateToken } from "../middlewares/authenticateToken";
 
 export const userRoutes = Router();
 
-userRoutes.post('/register', new UserController().newCadastro);
+userRoutes.post('/register', new UserController().newRegister);
 
 userRoutes.post('/login', new UserController().userLogin);
 

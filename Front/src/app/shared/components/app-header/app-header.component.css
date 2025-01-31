@@ -1,0 +1,10 @@
+::ng-deep .p-toolbar {
+   background-color: white !important;
+   border: none !important;
+   border-radius: none !important;
+}
+
+::ng-deep .p-button-text.p-button-plain {
+   color: black !important;
+}
+

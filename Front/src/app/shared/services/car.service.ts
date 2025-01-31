@@ -13,6 +13,10 @@ export class CarService {
 
 
   getCarById(carId: number): Observable<CarDto> {
-    return this.http.get<CarDto>(`http://localhost:3000/api/car/getById/${carId}`)
+    return this.http.get<CarDto>(`http://localhost:3000/api/car/getById/${carId}`);
+  }
+
+  getUserCars(): Observable<CarDto[]> {
+    return this.http.get<CarDto[]>(`http://localhost:3000/api/car/UserCars`);
   }
 }

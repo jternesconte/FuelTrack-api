@@ -77,6 +77,9 @@ export class CarController {
         if(userCars.length === 0) {
          res.status(200).json([]);
         } else {
+         userCars.forEach(car => {
+            car.image = bufferToBase64(car.image as Buffer);
+         })
          res.status(200).json(userCars);
         }
 

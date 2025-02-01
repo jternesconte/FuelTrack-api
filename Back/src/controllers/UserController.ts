@@ -69,7 +69,7 @@ export class UserController {
          const secret = process.env.SECRET_KEY as string;
 
          const token = jwt.sign({ userId: existentUser.id }, secret, {
-            expiresIn:'8h'
+            expiresIn:'7d'
          });
 
          res.status(201).json({ msg: 'Authentication succesfully done', token });

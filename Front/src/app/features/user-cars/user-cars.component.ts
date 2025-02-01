@@ -5,6 +5,7 @@ import { CarService } from '../../shared/services/car.service';
 import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-cars',
@@ -16,12 +17,17 @@ export class UserCarsComponent implements OnInit {
 
   carObservable!: Observable<CarDto[]>;
 
-  constructor(private carService: CarService) { }
+  constructor(
+    private carService: CarService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.carObservable =  this.carService.getUserCars();
   }
 
-
+  onMoreDetails(carId: number) {
+    this.router.navigate([`car/${carId}`])
+  }
 
 }

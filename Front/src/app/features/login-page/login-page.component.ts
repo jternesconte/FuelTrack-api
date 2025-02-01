@@ -12,6 +12,7 @@ import { TabsModule } from 'primeng/tabs';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { userLoginDto, UserRegisterDto } from '../../shared/interfaces/UserDto';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.formGroup = this.fb.group({
       name:[''],
@@ -64,12 +66,10 @@ export class LoginPageComponent implements OnInit {
     console.log(this.loginData)
     this.userService.userLogin(this.loginData).subscribe({
       next: (value) => {
-          console.log(value)
-          localStorage.setItem('token', value['token'])
+          localStorage.setItem('token', value['token']);
+          this.router.navigate(['/userCars']);
       },
-    })
-
-    console.log(localStorage.getItem('token'))
+    });
   }
 
   onRegisterSubmit() {
@@ -80,7 +80,7 @@ export class LoginPageComponent implements OnInit {
       password: this.formGroup.get('password')?.value,
       password2: this.formGroup.get('password2')?.value
     }
-    console.log(this.registerData)
+    console.log(this.registerData);
     this.userService.userRegister(this.registerData);
   }
 

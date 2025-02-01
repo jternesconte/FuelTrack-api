@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Toolbar } from 'primeng/toolbar';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +12,22 @@ import { ButtonModule } from 'primeng/button';
 })
 export class AppHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onLogout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
+  onCars() {
+    this.router.navigate(['/userCars']);
+  }
+
+  onFuel() {
+    // send to car select and after to fuel register
   }
 
 }

@@ -1,6 +1,6 @@
 
 export interface CarDto {
-   id?: number
+   id: number
    model: string;
    engine: string;
    year: string;

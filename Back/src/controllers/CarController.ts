@@ -41,7 +41,7 @@ export class CarController {
       try {
          const { carId } = req.params;
 
-         const car = await carRepository.findOneBy({ id: Number(carId) })
+         const car = await carRepository.findOneBy({ id: Number(carId), user: {id: req.user?.id} })
          if(!car) {
             res.status(404).json({ error: 'Car not found with id: ' + carId });
             return;

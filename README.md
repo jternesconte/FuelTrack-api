@@ -1,6 +1,6 @@
 # 🏎️ Car Management System  
 
-Welcome to the **FuelTrack**, a robust application developed using **Node.js** with **PostgreSQL** database support. This project is designed to help users manage their cars efficiently by tracking fuel consumption and mileage, and providing insightful data reports.
+Welcome to the **FuelTrack**, a robust application developed using **Node.js** with **PostgreSQL** database support and efficient web visualization with **AngularJs**. This project is designed to help users manage their cars efficiently by tracking fuel consumption and mileage, and providing insightful data reports.
 
 ---
 

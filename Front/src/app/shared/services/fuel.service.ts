@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LastMonthData } from '../../features/car-profile/car-profile.component';
+import { LastMonthsData } from '../../features/car-profile/car-profile.component';
 import { FuelDto } from '../interfaces/FuelDto';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class FuelService {
     return this.http.post(`http://localhost:3000/api/fuel/create/${carId}`, fuelInfo);
   }
 
-  getCarData(carId: number): Observable<LastMonthData> {
-    return this.http.get<LastMonthData>(`http://localhost:3000/api/fuel/average/${carId}`);
+  getCarData(carId: number, months: number): Observable<LastMonthsData> {
+    return this.http.get<LastMonthsData>(`http://localhost:3000/api/fuel/average/${carId}/${months}`);
   }
 }

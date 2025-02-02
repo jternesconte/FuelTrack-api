@@ -45,17 +45,18 @@ export class FuelController {
     }
   }
 
-  async averageCurrentMonth(req: Request, res: Response) {
+  async averageMonths(req: Request, res: Response) {
     try {
-      const { carId } = req.params;
+      const { carId, months } = req.params;
+
+      const numMonths = Number(months);
 
       const currentMonthStartDate = new Date();
+      currentMonthStartDate.setMonth(currentMonthStartDate.getMonth() - numMonths);
       currentMonthStartDate.setDate(1);
       currentMonthStartDate.setHours(0, 0, 0, 0);
 
-      const currentMonthEndDate = new Date(currentMonthStartDate);
-      currentMonthEndDate.setMonth(currentMonthEndDate.getMonth() + 1);
-      currentMonthEndDate.setDate(0);
+      const currentMonthEndDate = new Date();
       currentMonthEndDate.setHours(23, 59, 59, 999);
 
       const fuels = await fuelRepository.find({

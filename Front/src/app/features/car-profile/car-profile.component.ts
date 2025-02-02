@@ -8,7 +8,7 @@ import { FuelService } from '../../shared/services/fuel.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
-export interface LastMonthData {
+export interface LastMonthsData {
   averageConsumption: number;
   totalDistance: number;
   totalLiters: number;
@@ -28,7 +28,7 @@ export interface CarouselData {
 export class CarProfileComponent implements OnInit {
 
   carObservable!: Observable<CarDto>;
-  lastMonthInfo!: LastMonthData;
+  lastMonthInfo!: LastMonthsData;
   carouselData: CarouselData[] = [];
   isCarousel = signal<boolean>(false);
   carId!: number;
@@ -39,7 +39,7 @@ export class CarProfileComponent implements OnInit {
     private route: ActivatedRoute) {
     this.carId = route.snapshot.params['carId'];
     this.carObservable =  this.carService.getCarById(this.carId);
-    this.fuelService.getCarData(this.carId).subscribe(r => {
+    this.fuelService.getCarData(this.carId, 1).subscribe(r => {
       this.lastMonthInfo = r;
       this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
       this.carouselData.push({title: 'Distance Traveled', value: r.totalDistance});

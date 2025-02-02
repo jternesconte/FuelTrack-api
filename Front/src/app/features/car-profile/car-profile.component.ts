@@ -39,7 +39,7 @@ export class CarProfileComponent implements OnInit {
     private route: ActivatedRoute) {
     this.carId = route.snapshot.params['carId'];
     this.carObservable =  this.carService.getCarById(this.carId);
-    this.fuelService.getCarData(this.carId).subscribe(r => {
+    this.fuelService.getCarData(this.carId, 1).subscribe(r => {
       this.lastMonthInfo = r;
       this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
       this.carouselData.push({title: 'Distance Traveled', value: r.totalDistance});

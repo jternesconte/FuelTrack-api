@@ -8,7 +8,9 @@ Welcome to the **FuelTrack**, a robust application developed using **Node.js** w
 
 ### **Car Management**  
 - 📝 Add new cars.  
-- 🗘️ View and manage car profiles.  
+- 🗘️ View and manage car profiles.
+- 🌟 User-based car separation.
+- 📊 Useful car-related insights.
 
 ### **Fuel Tracking**  
 - 🌟 Add fuel records.  
@@ -16,23 +18,22 @@ Welcome to the **FuelTrack**, a robust application developed using **Node.js** w
 - ⚖️ Measure total distance traveled in a given period.  
 - ⛽ Total liters used within a selected timeframe.  
 
-### **Upcoming Features**  
+### **Authorization**  
 - 🛠️ Implementing login screen.  
-- 🛡️ Authorization and authentication on the backend.  
+- 🛡️ Authorization and authentication on backend/frontend.  
 - 🏡 Creating dedicated routes for login and registration.  
 - 🔠 Middleware for token verification.  
-- 🌟 User-based car separation.  
-- 📊 Adding new useful car-related insights.  
 - 👤 User registration and login.  
 - 🔒 Secure authentication with JWT tokens.  
-- 🔎 Middleware for token verification.  
+- 🔎 Middleware for token verification.
 
 ---
 
 ## 🛠️ Technologies Used  
 
 ### **Front-end**  
-- **AngularJS**: Framework for building dynamic web applications.  
+- **AngularJS**: Framework for building dynamic web applications.
+- **Tailwind**: Framework for style web pages.  
 
 ### **Back-end**  
 - **Node.js**: JavaScript runtime for server-side development.  
@@ -40,7 +41,7 @@ Welcome to the **FuelTrack**, a robust application developed using **Node.js** w
 
 ### **Database**  
 - **PostgreSQL**: Relational database for storing car, fuel, and user data.  
-- **TypeORM**: ORM to simplify database management and manipulation.  
+- **TypeORM**: ORM to simplify database management and manipulation in Nodejs.  
 
 ### **Others**  
 - **npm**: Package manager for installing and managing dependencies.  

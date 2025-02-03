@@ -7,6 +7,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { FuelService } from '../../shared/services/fuel.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { SelectButton, SelectButtonModule } from 'primeng/selectbutton';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 export interface LastMonthsData {
   averageConsumption: number;
@@ -23,32 +25,48 @@ export interface CarouselData {
   selector: 'app-car-profile',
   templateUrl: './car-profile.component.html',
   styleUrls: ['./car-profile.component.css', '../../../styles.css'],
-  imports: [CardModule, CarouselModule, CommonModule]
+  imports: [CardModule, CarouselModule, CommonModule, SelectButton, SelectButtonModule, ReactiveFormsModule]
 })
 export class CarProfileComponent implements OnInit {
 
+  formGroup: FormGroup;
   carObservable!: Observable<CarDto>;
   lastMonthInfo!: LastMonthsData;
   carouselData: CarouselData[] = [];
   isCarousel = signal<boolean>(false);
   carId!: number;
+  monthsOptions: any[] = [{ label: '1 Month', value: 1 }, { label: '3 Months', value: 3 }, { label: '6 Months', value: 6 }];
 
   constructor(
     private carService: CarService,
+    private fb: FormBuilder,
     private fuelService: FuelService,
     private route: ActivatedRoute) {
-    this.carId = route.snapshot.params['carId'];
-    this.carObservable =  this.carService.getCarById(this.carId);
-    this.fuelService.getCarData(this.carId, 1).subscribe(r => {
-      this.lastMonthInfo = r;
-      this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
-      this.carouselData.push({title: 'Distance Traveled', value: r.totalDistance});
-      this.carouselData.push({title: 'Liters used', value: r.totalLiters});
-      this.isCarousel.set(true);
-    })
+      this.formGroup = this.fb.group({
+        months: 1
+      });
+
+      
   }
 
   ngOnInit() {
+    this.carId = this.route.snapshot.params['carId'];
+    this.carObservable =  this.carService.getCarById(this.carId);
+
+    this.formGroup.get('months')?.valueChanges.subscribe({
+      next: (value) => {
+        this.fuelService.getCarData(this.carId, value).subscribe(r => {
+          this.carouselData =[];
+          this.lastMonthInfo = r;
+          this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
+          this.carouselData.push({title: 'Distance Traveled', value: r.totalDistance});
+          this.carouselData.push({title: 'Liters used', value: r.totalLiters});
+          this.isCarousel.set(true);
+        });
+      },
+    });
+
+    this.formGroup.get('months')?.setValue(1);
   }
 
   getCarInfo() {

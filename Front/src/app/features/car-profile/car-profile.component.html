@@ -14,7 +14,8 @@
         </div>
       </p-card>
   
-      <p-card header="Last Month Information" class="w-96" *ngIf="isCarousel()">
+      <p-card header="Last Month Information" class="flex flex-col w-96" *ngIf="isCarousel()" [formGroup]="formGroup">
+        <p-selectbutton [options]="monthsOptions" formControlName="months" optionLabel="label" optionValue="value" class="w-full justify-center" />
         <p-carousel
           [value]="carouselData"
           [numVisible]="1"

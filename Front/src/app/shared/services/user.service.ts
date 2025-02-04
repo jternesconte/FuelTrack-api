@@ -19,7 +19,7 @@ constructor(private http: HttpClient) { }
     return this.http.post<LoginResponse>(`http://localhost:3000/api/user/login`, loginData);
   }
 
-  userRegister(registerData: UserDto) {
-    return this.http.post(`http://localhost:3000/api/user/register`, registerData);
+  userRegister(registerData: UserDto): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`http://localhost:3000/api/user/register`, registerData);
   }
 }

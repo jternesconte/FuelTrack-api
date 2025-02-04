@@ -26,8 +26,4 @@ export class AppHeaderComponent implements OnInit {
     this.router.navigate(['/userCars']);
   }
 
-  onFuel() {
-    // send to car select and after to fuel register
-  }
-
 }

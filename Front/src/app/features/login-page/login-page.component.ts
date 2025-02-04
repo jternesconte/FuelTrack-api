@@ -63,11 +63,14 @@ export class LoginPageComponent implements OnInit {
       email: this.formGroup.get('email')?.value,
       password: this.formGroup.get('password')?.value
     }
-    console.log(this.loginData)
+    
     this.userService.userLogin(this.loginData).subscribe({
       next: (value) => {
           localStorage.setItem('token', value['token']);
           this.router.navigate(['/userCars']);
+      },
+      error: (err) => {
+          console.log(err);
       },
     });
   }
@@ -80,8 +83,16 @@ export class LoginPageComponent implements OnInit {
       password: this.formGroup.get('password')?.value,
       password2: this.formGroup.get('password2')?.value
     }
-    console.log(this.registerData);
-    this.userService.userRegister(this.registerData);
+
+    this.userService.userRegister(this.registerData).subscribe({
+      next: (value) => {
+          localStorage.setItem('token', value['token']);
+          this.router.navigate(['/userCars']);
+      },
+      error: (err) => {
+          console.log(err);
+      },
+    });
   }
 
 }

@@ -1,23 +1,23 @@
-<div class="flex justify-center items-center h-full">
-  <p-card class="h-96" [header]="'Sign-up'">
-      <div class="flex flex-col gap-6 h-full w-96">
+<div class="flex justify-center items-center h-full" [formGroup]="formGroup">
+  <p-card class="h-96" [header]="'Fuel Register'">
+      <div class="flex flex-col gap-6 h-full w-96 mt-6 mb-3">
         <p-floatlabel>
-          <input class="w-full" type="number" id="price" pInputText formControlName="price" />
+          <p-inputnumber class="w-full" inputId="price" formControlName="price" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
           <label for="price">Price</label>  
         </p-floatlabel>
         
         <p-floatlabel>
-          <input class="w-full" type="number" id="liters" pInputText formControlName="liters" />
+          <p-inputnumber class="w-full" inputId="liters" formControlName="liters" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
           <label for="liters">Liters</label>  
         </p-floatlabel>
 
         <p-floatlabel>
-          <input class="w-full" type="number" id="distanceTraveled" formControlName="distanceTraveled"/>
+          <p-inputnumber class="w-full" inputId="distanceTraveled" formControlName="distanceTraveled" mode="decimal" [minFractionDigits]="1" [maxFractionDigits]="1"/>
           <label for="distanceTraveled">Distance Traveled</label>  
         </p-floatlabel>
         
         <p-floatlabel>
-          <input class="w-full" type="date" id="date" formControlName="date"/>
+          <p-datepicker class="w-full" [iconDisplay]="'input'" [showIcon]="true" inputId="date" formControlName="date" />
           <label for="date">Date</label>  
         </p-floatlabel>
       </div>

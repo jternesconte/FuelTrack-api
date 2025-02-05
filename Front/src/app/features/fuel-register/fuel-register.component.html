@@ -1,0 +1,27 @@
+<div class="flex justify-center items-center h-full" [formGroup]="formGroup">
+  <p-card class="h-96" [header]="'Fuel Register'">
+      <div class="flex flex-col gap-6 h-full w-96 mt-6 mb-3">
+        <p-floatlabel>
+          <p-inputnumber class="w-full" inputId="price" formControlName="price" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
+          <label for="price">Price</label>  
+        </p-floatlabel>
+        
+        <p-floatlabel>
+          <p-inputnumber class="w-full" inputId="liters" formControlName="liters" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
+          <label for="liters">Liters</label>  
+        </p-floatlabel>
+
+        <p-floatlabel>
+          <p-inputnumber class="w-full" inputId="distanceTraveled" formControlName="distanceTraveled" mode="decimal" [minFractionDigits]="1" [maxFractionDigits]="1"/>
+          <label for="distanceTraveled">Distance Traveled</label>  
+        </p-floatlabel>
+        
+        <p-floatlabel>
+          <p-datepicker class="w-full" [iconDisplay]="'input'" [showIcon]="true" inputId="date" formControlName="date" />
+          <label for="date">Date</label>  
+        </p-floatlabel>
+      </div>
+
+      <p-button label="Submit" (onClick)="onFuelSubmit()"/>
+  </p-card>
+</div>

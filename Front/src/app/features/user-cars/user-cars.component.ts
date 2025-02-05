@@ -27,7 +27,10 @@ export class UserCarsComponent implements OnInit {
   }
 
   onMoreDetails(carId: number) {
-    this.router.navigate([`car/${carId}`])
+    this.router.navigate([`car/${carId}`]);
   }
 
+  onFuel(carId: number) {
+    this.router.navigate([`fuel/${carId}`]);
+  }
 }

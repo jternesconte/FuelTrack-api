@@ -54,7 +54,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    if(localStorage.getItem('token')) {
+      this.router.navigate(['/userCars'])
+    }
   }
 
   onLoginSubmit() {

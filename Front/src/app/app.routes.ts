@@ -6,6 +6,10 @@ import { FuelRegisterComponent } from './features/fuel-register/fuel-register.co
 
 export const routes: Routes = [
    {
+      path: '',
+      component: LoginPageComponent
+   },
+   {
       path: 'login',
       component: LoginPageComponent
    },

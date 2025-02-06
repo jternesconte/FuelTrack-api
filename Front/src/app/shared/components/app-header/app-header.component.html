@@ -5,7 +5,9 @@
           <p-button label="Cars" text plain (onClick)="onCars()"/>
       </div>
       <div>
-        <p-button label="Logout" text plain (onClick)="onLogout()"></p-button>
+        <p-toast />
+        <p-confirmdialog />
+        <p-button label="Logout" text plain (onClick)="onLogout($event)"></p-button>
       </div>
   </div>
 </p-toolbar>

@@ -1,4 +1,4 @@
-<div *ngIf="carObservable | async as cars" class="mt-4">
+<div *ngIf="carObservable | async as cars" class="mt-4 car-grid-container">
   @for (car of cars; track $index) {
     <p-card class="flex flex-row justify-center w-full" [header]="car.model + ' ' + car.engine">
       <div class="flex flex-col gap-3">

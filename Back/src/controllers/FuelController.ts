@@ -68,8 +68,12 @@ export class FuelController {
       });
 
       if (fuels.length === 0) {
-        res.status(404).json({ message: 'No fuel data found for the current month.' });
-        return
+        res.status(200).json({
+          averageConsumption: 0,
+          totalLiters: 0,
+          totalDistance: 0
+        });
+        return;
       }
 
       let totalLiters: number = 0;

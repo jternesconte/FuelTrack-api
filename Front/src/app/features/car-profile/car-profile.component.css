@@ -1,10 +1,10 @@
 ::ng-deep .p-card {
-   color: black !important;
+   color: #1E293B !important;
    height: 100% !important;
    justify-content: center !important;
 }
 
 ::ng-deep .p-card-title {
-   color: black !important;
+   color: #1E293B !important;
    text-align: center !important;
 }

@@ -26,9 +26,6 @@ export class AppHeaderComponent implements OnInit {
   }
 
   onLogout(event: any) {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure that you want to logout?',
@@ -45,6 +42,8 @@ export class AppHeaderComponent implements OnInit {
       },
       accept: () => {
           this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Successfully logout' });
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
       },
       reject: () => {
           this.messageService.add({

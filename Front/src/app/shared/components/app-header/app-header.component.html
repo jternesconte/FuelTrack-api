@@ -2,12 +2,12 @@
   <div class="flex flex-row w-full justify-between">
       <div class="flex items-center gap-2">
           <img src="assets/images/car-icon.png" alt="Car icon" class="w-10 h-10">
-          <p-button label="Cars" text plain (onClick)="onCars()"/>
+          <p-button label="Cars" (onClick)="onCars()"/>
       </div>
       <div>
         <p-toast />
         <p-confirmdialog />
-        <p-button label="Logout" text plain (onClick)="onLogout($event)"></p-button>
+        <p-button label="Logout" (onClick)="onLogout($event)"></p-button>
       </div>
   </div>
 </p-toolbar>

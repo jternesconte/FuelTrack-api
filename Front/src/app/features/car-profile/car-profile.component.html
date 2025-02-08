@@ -1,4 +1,4 @@
-<div *ngIf="carObservable | async as car" class="mt-4 p-5">
+<div *ngIf="carObservable | async as car" class="mt-4 p-5 flex justify-center">
   <div class="flex flex-row justify-center gap-10">
     <div class="flex items-center">
       <p-card class="flex flex-row w-full" [header]="car.model + ' ' + car.engine">

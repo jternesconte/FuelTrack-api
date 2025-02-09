@@ -13,6 +13,7 @@
 ::ng-deep .p-tab {
    width: 50% !important;
    justify-content: center !important;
+   text-align: center !important;
 }
 
 ::ng-deep .p-card-body { 
@@ -21,4 +22,13 @@
 
 ::ng-deep .p-password {
    width: 100% !important;
+}
+
+::ng-deep .p-panel-header {
+   display: none !important;
+}
+
+::ng-deep .p-button {
+   width: 100% !important;
+   font-weight: 600 !important;
 }

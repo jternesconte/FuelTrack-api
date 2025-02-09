@@ -2,6 +2,7 @@
    background-color: #0ea5e9 !important;
    border: none !important;
    border-radius: none !important;
+   border-radius: 0 0 12px 12px !important;
 }
 
 ::ng-deep .p-button-text.p-button-plain {

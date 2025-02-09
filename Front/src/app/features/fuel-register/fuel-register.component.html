@@ -1,27 +1,33 @@
-<div class="flex justify-center items-center h-full" [formGroup]="formGroup">
-  <p-card class="h-96" [header]="'Fuel Register'">
-      <div class="flex flex-col gap-6 h-full w-96 mt-6 mb-3">
-        <p-floatlabel>
-          <p-inputnumber class="w-full" inputId="price" formControlName="price" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
-          <label for="price">Price</label>  
-        </p-floatlabel>
-        
-        <p-floatlabel>
-          <p-inputnumber class="w-full" inputId="liters" formControlName="liters" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
-          <label for="liters">Liters</label>  
-        </p-floatlabel>
+<div class="flex justify-center items-center h-screen">
+  <p-card class="p-6 shadow-md rounded-lg w-full max-w-md">
+    
+    <h2 class="text-xl font-semibold text-[#1E293B] text-center">Fuel Register</h2>
+    
+    <div class="flex flex-col gap-5 mt-5" [formGroup]="formGroup">
+      
+      <p-floatlabel>
+        <p-inputnumber class="w-full" inputId="price" formControlName="price" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
+        <label for="price">Price</label>  
+      </p-floatlabel>
 
-        <p-floatlabel>
-          <p-inputnumber class="w-full" inputId="distanceTraveled" formControlName="distanceTraveled" mode="decimal" [minFractionDigits]="1" [maxFractionDigits]="1"/>
-          <label for="distanceTraveled">Distance Traveled</label>  
-        </p-floatlabel>
-        
-        <p-floatlabel>
-          <p-datepicker class="w-full" [iconDisplay]="'input'" [showIcon]="true" inputId="date" formControlName="date" />
-          <label for="date">Date</label>  
-        </p-floatlabel>
-      </div>
+      <p-floatlabel>
+        <p-inputnumber class="w-full" inputId="liters" formControlName="liters" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
+        <label for="liters">Liters</label>  
+      </p-floatlabel>
 
-      <p-button label="Submit" (onClick)="onFuelSubmit()"/>
+      <p-floatlabel>
+        <p-inputnumber class="w-full" inputId="distanceTraveled" formControlName="distanceTraveled" mode="decimal" [minFractionDigits]="1" [maxFractionDigits]="1"/>
+        <label for="distanceTraveled">Distance Traveled</label>  
+      </p-floatlabel>
+
+      <p-floatlabel>
+        <p-datepicker class="w-full" [iconDisplay]="'input'" [showIcon]="true" inputId="date" formControlName="date"/>
+        <label for="date">Date</label>  
+      </p-floatlabel>
+
+      <p-button label="Submit" (onClick)="onFuelSubmit()" class="mt-4 text-white w-full py-2 rounded-lg"/>
+      
+    </div>
+
   </p-card>
 </div>

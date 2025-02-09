@@ -1,59 +1,64 @@
-<div class="flex justify-center items-center h-5/6" [formGroup]="formGroup">
-  <p-tabs [value]="0">
-    <p-tablist>
-      <p-tab [value]="0">Sign-in</p-tab>
-      <p-tab [value]="1">Sign-on</p-tab>
-    </p-tablist>
-    <p-tabpanels>
-  
-      <p-tabpanel [value]="0">
-        <div class="flex justify-center items-center h-full">
-          <p-card class="h-96" [header]="'Sign-in '">
-              <div class="flex flex-col gap-6 h-full w-96">
-                <p-floatlabel>
-                  <input class="w-full" type="text" id="email" pInputText (keyup.enter)="onLoginSubmit()" formControlName="email" />
-                  <label for="email">Email</label>  
-                </p-floatlabel>
-                <p-floatlabel>
-                  <p-password class="w-full" id="password" [feedback]="false" (keyup.enter)="onLoginSubmit()" formControlName="password"/>
-                  <label for="password">Password</label>  
-                </p-floatlabel>
-              </div>
-  
-              <p-button label="Submit" (onClick)="onLoginSubmit()"/>
-          </p-card>
-        </div>
-      </p-tabpanel>
-  
-      <p-tabpanel [value]="1">
-        <div class="flex justify-center items-center h-full">
-          <p-card class="h-96" [header]="'Sign-up'">
-              <div class="flex flex-col gap-6 h-full w-96">
-                <p-floatlabel>
-                  <input (keyup.enter)="onRegisterSubmit()" class="w-full" type="text" pInputText formControlName="name" />
-                  <label for="email">Email</label>  
-                </p-floatlabel>
-                
-                <p-floatlabel>
-                  <input (keyup.enter)="onRegisterSubmit()" class="w-full" type="text" id="email" pInputText formControlName="email" />
-                  <label for="email">Email</label>  
-                </p-floatlabel>
+<div class="flex justify-center items-center h-screen w-full" [formGroup]="formGroup">
+  <p-panel class="w-full max-w-lg p-4">
+    
+    <p-tabs [value]="0">
+      
+      <p-tablist class="flex">
+        <p-tab [value]="0" class="w-1/2 text-center">Sign-in</p-tab>
+        <p-tab [value]="1" class="w-1/2 text-center">Sign-up</p-tab>
+      </p-tablist>
+      
+      <p-tabpanels>
+        
+        <p-tabpanel [value]="0">
+          <div class="flex flex-col gap-6 mt-6">
+            
+            <p-floatlabel>
+              <input class="w-full p-2 border border-gray-300 rounded-lg" type="text" id="email" pInputText (keyup.enter)="onLoginSubmit()" formControlName="email"/>
+              <label for="email">Email</label>  
+            </p-floatlabel>
 
-                <p-floatlabel>
-                  <p-password (keyup.enter)="onRegisterSubmit()" class="w-full" id="password" [feedback]="false" formControlName="password"/>
-                  <label for="password">Password</label>  
-                </p-floatlabel>
-                
-                <p-floatlabel>
-                  <p-password (keyup.enter)="onRegisterSubmit()" class="w-full" id="password2" [feedback]="false" formControlName="password2"/>
-                  <label for="password2">Confirm Password</label>  
-                </p-floatlabel>
-              </div>
-  
-              <p-button label="Submit" (onClick)="onRegisterSubmit()"/>
-          </p-card>
-        </div>
-      </p-tabpanel>
-    </p-tabpanels>
-  </p-tabs>
+            <p-floatlabel>
+              <p-password class="w-full" id="password" [feedback]="false" (keyup.enter)="onLoginSubmit()" formControlName="password"/>
+              <label for="password">Password</label>  
+            </p-floatlabel>
+
+            <p-button label="Login" (onClick)="onLoginSubmit()" class="text-white w-full py-2 rounded-lg"/>
+          
+          </div>
+        </p-tabpanel>
+        
+        <p-tabpanel [value]="1">
+          <div class="flex flex-col gap-6 mt-6">
+            
+            <p-floatlabel>
+              <input class="w-full p-2 border border-gray-300 rounded-lg" type="text" pInputText formControlName="name"/>
+              <label for="name">Name</label>  
+            </p-floatlabel>
+
+            <p-floatlabel>
+              <input class="w-full p-2 border border-gray-300 rounded-lg" type="text" id="email" pInputText formControlName="email"/>
+              <label for="email">Email</label>  
+            </p-floatlabel>
+
+            <p-floatlabel>
+              <p-password class="w-full" id="password" [feedback]="false" formControlName="password"/>
+              <label for="password">Password</label>  
+            </p-floatlabel>
+
+            <p-floatlabel>
+              <p-password class="w-full" id="password2" [feedback]="false" formControlName="password2"/>
+              <label for="password2">Confirm Password</label>  
+            </p-floatlabel>
+
+            <p-button label="Sign Up" (onClick)="onRegisterSubmit()" class="text-white w-full py-2 rounded-lg"/>
+          
+          </div>
+        </p-tabpanel>
+        
+      </p-tabpanels>
+      
+    </p-tabs>
+    
+  </p-panel>
 </div>

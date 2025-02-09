@@ -13,6 +13,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { userLoginDto, UserRegisterDto } from '../../shared/interfaces/UserDto';
 import { Router } from '@angular/router';
+import { PanelModule } from 'primeng/panel';
 
 
 @Component({
@@ -31,7 +32,8 @@ import { Router } from '@angular/router';
     FloatLabelModule,
     PasswordModule,
     ReactiveFormsModule,
-    FormsModule]
+    FormsModule,
+    PanelModule]
 })
 export class LoginPageComponent implements OnInit {
 

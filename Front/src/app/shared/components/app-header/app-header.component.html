@@ -1,13 +1,16 @@
-<p-toolbar>
-  <div class="flex flex-row w-full justify-between">
-      <div class="flex items-center gap-2">
-          <img src="assets/images/car-icon.png" alt="Car icon" class="w-10 h-10">
-          <p-button label="Cars" (onClick)="onCars()"/>
-      </div>
-      <div>
-        <p-toast />
-        <p-confirmdialog />
-        <p-button label="Logout" (onClick)="onLogout($event)"></p-button>
-      </div>
+<p-toolbar class="custom-toolbar">
+  <div class="flex flex-row w-full justify-between items-center">
+    
+    <div class="flex items-center gap-3">
+        <img src="assets/images/car-icon.png" alt="Car icon" class="w-12 h-12">
+        <p-button label="Cars" (onClick)="onCars()" class="custom-nav-btn"/>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <p-toast />
+      <p-confirmdialog />
+      <p-button label="Logout" (onClick)="onLogout($event)" class="custom-logout-btn"/>
+    </div>
+
   </div>
 </p-toolbar>

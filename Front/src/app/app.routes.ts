@@ -3,6 +3,7 @@ import { CarProfileComponent } from './features/car-profile/car-profile.componen
 import { LoginPageComponent } from './features/login-page/login-page.component';
 import { UserCarsComponent } from './features/user-cars/user-cars.component';
 import { FuelRegisterComponent } from './features/fuel-register/fuel-register.component';
+import { CarCreateComponent } from './features/car-create/car-create.component';
 
 export const routes: Routes = [
    {
@@ -24,5 +25,9 @@ export const routes: Routes = [
    {
       path: 'fuel/:carId',
       component: FuelRegisterComponent
+   },
+   {
+      path: 'newCar',
+      component: CarCreateComponent
    }
 ];

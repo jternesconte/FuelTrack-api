@@ -1,3 +1,7 @@
+<div class="flex justify-center mb-4">
+  <p-button label="Add Car" class="w-36 mt-4" (click)="onCreateCar()"></p-button>
+</div>
+
 <div *ngIf="carObservable | async as cars" class="mt-4 car-grid-container">
   @for (car of cars; track $index) {
     <p-card class="flex flex-row justify-center w-full" [header]="car.model + ' ' + car.engine">

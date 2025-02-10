@@ -1,0 +1,47 @@
+<div class="flex justify-center items-center h-screen">
+  <p-card class="p-6 shadow-md rounded-lg w-full max-w-md">
+    
+    <h2 class="text-xl font-semibold text-[#1E293B] text-center">Car Create</h2>
+    
+    <div class="flex flex-col gap-5 mt-5" [formGroup]="carForm">
+      
+      <p-floatlabel>
+        <input pInputText class="w-full" id="model" formControlName="model" />
+        <label for="model">Model</label>  
+      </p-floatlabel>
+
+      <p-floatlabel>
+        <input pInputText class="w-full" id="engine" formControlName="engine" />
+        <label for="engine">Engine</label>  
+      </p-floatlabel>
+
+      <p-floatlabel>
+        <input pInputText class="w-full" id="year" formControlName="year" />
+        <label for="year">Year</label>  
+      </p-floatlabel>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Category</label>
+        <p-select [options]="carModels" optionLabel="name" placeholder="Select Category" class="w-full" formControlName="category" />
+      </div>
+
+      <p-floatlabel>
+        <p-inputnumber class="w-full" inputId="km" formControlName="km" mode="decimal" [minFractionDigits]="1" [maxFractionDigits]="1" />
+        <label for="km">Kilometers</label>  
+      </p-floatlabel>
+
+      <p-floatlabel>
+        <p-inputnumber class="w-full" inputId="fuelCapacity" formControlName="fuelCapacity" mode="decimal" />
+        <label for="fuelCapacity">Fuel Capacity</label>  
+      </p-floatlabel>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Image</label>
+        <input type="file" accept=".png, .jpg, .jpeg, .pdf" (change)="onFileChange($event)" class="mt-2 w-full border rounded-lg p-2" />
+      </div>
+
+      <p-button label="Submit" (onClick)="onCarSubmit()" class="mt-4 text-white w-full py-2 rounded-lg" />
+      
+    </div>
+  </p-card>
+</div>

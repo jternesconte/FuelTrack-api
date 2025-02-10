@@ -9,7 +9,8 @@ export class CarController {
    async newCar(req: Request, res: Response) {
       try {
          const { model, engine, year, category, km, fuelCapacity, image} = req.body;
-         const { userId } = req.params;
+         
+         const userId = req.user?.id;
          
          const existentUser = await userRepository.findOneBy({ id: Number(userId) });
 

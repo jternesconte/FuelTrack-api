@@ -33,4 +33,8 @@ export class UserCarsComponent implements OnInit {
   onFuel(carId: number) {
     this.router.navigate([`fuel/${carId}`]);
   }
+
+  onCreateCar() {
+    this.router.navigate([`newCar`]);
+  }
 }

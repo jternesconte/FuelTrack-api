@@ -19,4 +19,8 @@ export class CarService {
   getUserCars(): Observable<CarDto[]> {
     return this.http.get<CarDto[]>(`http://localhost:3000/api/car/UserCars`);
   }
+
+  newCar(carInfo: Omit<CarDto,'id'>) {
+    return this.http.post<CarDto[]>(`http://localhost:3000/api/car/create`, carInfo);
+  }
 }

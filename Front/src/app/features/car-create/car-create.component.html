@@ -1,9 +1,9 @@
-<div class="flex justify-center items-center h-screen">
-  <p-card class="p-6 shadow-md rounded-lg w-full max-w-md">
+<div class="flex justify-center items-center min-h-screen p-4">
+  <p-card class="p-6 shadow-md rounded-lg w-full max-w-lg">
     
     <h2 class="text-xl font-semibold text-[#1E293B] text-center">Car Create</h2>
     
-    <div class="flex flex-col gap-5 mt-5" [formGroup]="carForm">
+    <div class="flex flex-col gap-4 mt-5" [formGroup]="carForm">
       
       <p-floatlabel>
         <input pInputText class="w-full" id="model" formControlName="model" />
@@ -25,15 +25,17 @@
         <p-select [options]="carModels" optionLabel="name" placeholder="Select Category" class="w-full" formControlName="category" />
       </div>
 
-      <p-floatlabel>
-        <p-inputnumber class="w-full" inputId="km" formControlName="km" mode="decimal" [minFractionDigits]="1" [maxFractionDigits]="1" />
-        <label for="km">Kilometers</label>  
-      </p-floatlabel>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <p-floatlabel>
+          <p-inputnumber class="w-full" inputId="km" formControlName="km" mode="decimal" [minFractionDigits]="1" [maxFractionDigits]="1" />
+          <label for="km">Kilometers</label>  
+        </p-floatlabel>
 
-      <p-floatlabel>
-        <p-inputnumber class="w-full" inputId="fuelCapacity" formControlName="fuelCapacity" mode="decimal" />
-        <label for="fuelCapacity">Fuel Capacity</label>  
-      </p-floatlabel>
+        <p-floatlabel>
+          <p-inputnumber class="w-full" inputId="fuelCapacity" formControlName="fuelCapacity" mode="decimal" />
+          <label for="fuelCapacity">Fuel Capacity</label>  
+        </p-floatlabel>
+      </div>
       
       <div>
         <label class="block text-sm font-medium text-gray-700">Image</label>

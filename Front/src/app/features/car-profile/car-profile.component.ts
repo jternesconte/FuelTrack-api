@@ -21,6 +21,12 @@ export interface CarouselData {
   value: number;
 }
 
+export interface FuelHistory {
+  date: string;
+  liters: number;
+  price: number;
+}
+
 @Component({
   selector: 'app-car-profile',
   templateUrl: './car-profile.component.html',
@@ -33,6 +39,7 @@ export class CarProfileComponent implements OnInit {
   carObservable!: Observable<CarDto>;
   lastMonthInfo!: LastMonthsData;
   carouselData: CarouselData[] = [];
+  fuelHistory: FuelHistory[] = [];
   isCarousel = signal<boolean>(false);
   carId!: number;
   monthsOptions: any[] = [{ label: '1 Month', value: 1 }, { label: '3 Months', value: 3 }, { label: '6 Months', value: 6 }];
@@ -45,8 +52,7 @@ export class CarProfileComponent implements OnInit {
       this.formGroup = this.fb.group({
         months: 1
       });
-
-      
+      this.loadFuelHistory();
   }
 
   ngOnInit() {
@@ -55,21 +61,28 @@ export class CarProfileComponent implements OnInit {
 
     this.formGroup.get('months')?.valueChanges.subscribe({
       next: (value) => {
-        this.fuelService.getCarData(this.carId, value).subscribe(r => {
-          this.carouselData =[];
-          this.lastMonthInfo = r;
-          this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
-          this.carouselData.push({title: 'Distance Traveled', value: r.totalDistance});
-          this.carouselData.push({title: 'Liters used', value: r.totalLiters});
-          this.isCarousel.set(true);
-        });
+        this.getCarInfo(value)
       },
     });
 
     this.formGroup.get('months')?.setValue(1);
   }
 
-  getCarInfo() {
+  getCarInfo(value: any) {
+    this.fuelService.getCarData(this.carId, value).subscribe(r => {
+      this.carouselData =[];
+      this.lastMonthInfo = r;
+      this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
+      this.carouselData.push({title: 'Distance Traveled', value: r.totalDistance});
+      this.carouselData.push({title: 'Liters used', value: r.totalLiters});
+      this.isCarousel.set(true);
+    });
+  }
+
+  loadFuelHistory() {
+    /* this.fuelService.getFuelHistory(this.carId).subscribe(history => {
+      this.fuelHistory = history;
+    }); */
   }
 
 }

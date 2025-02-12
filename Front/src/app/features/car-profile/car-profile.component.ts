@@ -52,7 +52,6 @@ export class CarProfileComponent implements OnInit {
       this.formGroup = this.fb.group({
         months: 1
       });
-      this.loadFuelHistory();
   }
 
   ngOnInit() {
@@ -61,15 +60,16 @@ export class CarProfileComponent implements OnInit {
 
     this.formGroup.get('months')?.valueChanges.subscribe({
       next: (value) => {
-        this.getCarInfo(value)
+        this.getCarInfo(value);
+        this.loadFuelHistory(value);
       },
     });
 
     this.formGroup.get('months')?.setValue(1);
   }
 
-  getCarInfo(value: any) {
-    this.fuelService.getCarData(this.carId, value).subscribe(r => {
+  getCarInfo(months: any) {
+    this.fuelService.getFuelData(this.carId, months).subscribe(r => {
       this.carouselData =[];
       this.lastMonthInfo = r;
       this.carouselData.push({title: 'Consumption Average', value: r.averageConsumption});
@@ -79,10 +79,10 @@ export class CarProfileComponent implements OnInit {
     });
   }
 
-  loadFuelHistory() {
-    /* this.fuelService.getFuelHistory(this.carId).subscribe(history => {
-      this.fuelHistory = history;
-    }); */
+  loadFuelHistory(months: any) {
+    this.fuelService.getFuelHistory(this.carId, months).subscribe(r => {
+      this.fuelHistory = r;
+    });
   }
 
 }

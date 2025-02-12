@@ -9,3 +9,5 @@ fuelRoutes.use(authenticateToken);
 fuelRoutes.post('/create/:carId', new FuelController().newFuel);
 
 fuelRoutes.get('/average/:carId/:months', new FuelController().averageMonths);
+
+fuelRoutes.get('/history/:carId/:months', new FuelController().fuelHistory);

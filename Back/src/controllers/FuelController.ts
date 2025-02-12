@@ -3,6 +3,7 @@ import { carRepository } from '../repositories/CarRepository';
 import { IFuel } from '../interfaces/IFuel';
 import { fuelRepository } from '../repositories/FuelRepository';
 import { Between } from 'typeorm';
+import { FuelHistory } from '../interfaces/FuelHistory';
 
 export class FuelController {
 
@@ -98,7 +99,50 @@ export class FuelController {
       });
 
     } catch (error) {
-      res.status(500).json({ error: 'Error calculating the average consumption for the current month.' });
+      res.status(500).json({ error: 'Error calculating the average consumption.' });
+    }
+  }
+
+  async fuelHistory(req: Request, res: Response) {
+    try {
+      const { carId, months } = req.params;
+
+      const numMonths = Number(months);
+
+      const currentMonthStartDate = new Date();
+      currentMonthStartDate.setMonth(currentMonthStartDate.getMonth() - numMonths);
+      currentMonthStartDate.setDate(1);
+      currentMonthStartDate.setHours(0, 0, 0, 0);
+
+      const currentMonthEndDate = new Date();
+      currentMonthEndDate.setHours(23, 59, 59, 999);
+
+      const fuelHistory = await fuelRepository.find({
+        where: {
+          car: { id: Number(carId) },
+          date: Between(currentMonthStartDate, currentMonthEndDate),
+        },
+        relations: ['car'],
+      });
+
+      if (fuelHistory.length === 0) {
+        res.status(200).json({
+          date: 0,
+          liters: 0,
+          price: 0
+        });
+        return;
+      }
+
+      let historyModel: FuelHistory[] = [];
+
+      fuelHistory.forEach(fuel => {
+        historyModel.push({ date: fuel.date.toLocaleDateString("en-US", { year: 'numeric', month: '2-digit',day: '2-digit' }), liters: fuel.liters, price: fuel.price });
+      });
+
+      res.status(200).json( historyModel );
+    } catch (error) {
+      res.status(500).json({ error: 'Error getting the fuel history.' });
     }
   }
 

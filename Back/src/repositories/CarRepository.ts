@@ -9,6 +9,7 @@ export const carRepository = AppDataSource.getRepository(Car).extend({
       model: data.model,
       engine: data.engine,
       year: data.year,
+      plate: data.plate,
       km: data.km,
       category: data.category,
       fuelCapacity: data.fuelCapacity,

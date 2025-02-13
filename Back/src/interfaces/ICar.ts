@@ -5,6 +5,7 @@ export interface ICar {
   model: string;
   engine: string;
   year: string;
+  plate: string;
   category: string;
   km: number
   fuelCapacity: number;

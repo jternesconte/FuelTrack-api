@@ -137,7 +137,7 @@ export class FuelController {
       let historyModel: FuelHistory[] = [];
 
       fuelHistory.forEach(fuel => {
-        historyModel.push({ date: fuel.date.toLocaleDateString("en-US", { year: 'numeric', month: '2-digit',day: '2-digit' }), liters: fuel.liters, price: fuel.price });
+        historyModel.push({ date: fuel.date.toLocaleDateString("pt-BR", { year: 'numeric', month: '2-digit',day: '2-digit' }), liters: fuel.liters, price: fuel.price });
       });
 
       res.status(200).json( historyModel );

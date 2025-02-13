@@ -20,6 +20,11 @@
         <label for="year">Year</label>  
       </p-floatlabel>
 
+      <p-floatlabel>
+        <input pInputText class="w-full" id="plate" [maxlength]="7" formControlName="plate" />
+        <label for="plate">Plate</label>  
+      </p-floatlabel>
+
       <div>
         <label class="block text-sm font-medium text-gray-700">Category</label>
         <p-select [options]="carModels" optionLabel="name" placeholder="Select Category" class="w-full" formControlName="category" />

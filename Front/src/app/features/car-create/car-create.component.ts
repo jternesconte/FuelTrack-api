@@ -9,7 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CarDto } from '../../shared/interfaces/CarDto';
 import { CarService } from '../../shared/services/car.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectModule  } from 'primeng/select';
 
 interface carModel {
@@ -42,12 +42,13 @@ export class CarCreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private carService: CarService,
-    private route: ActivatedRoute
+    private routerNav: Router
   ) {
     this.carForm = this.fb.group({
       model: [],
       engine: [],
       year: [],
+      plate: [],
       category: [],
       km: [],
       fuelCapacity: [],
@@ -75,6 +76,7 @@ export class CarCreateComponent implements OnInit {
       model: this.carForm.get('model')?.value,
       engine: this.carForm.get('engine')?.value,
       year: this.carForm.get('year')?.value,
+      plate: this.carForm.get('plate')?.value,
       category: this.carForm.get('category')?.value.name,
       km: this.carForm.get('km')?.value,
       fuelCapacity: this.carForm.get('fuelCapacity')?.value,
@@ -83,7 +85,7 @@ export class CarCreateComponent implements OnInit {
 
     this.carService.newCar(this.newCar).subscribe({
       next: (value) => {
-          
+          this.routerNav.navigate(['/userCars']);
       },
       error: (err) => {
           console.log(err)

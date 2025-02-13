@@ -8,7 +8,7 @@ export class CarController {
 
    async newCar(req: Request, res: Response) {
       try {
-         const { model, engine, year, category, km, fuelCapacity, image} = req.body;
+         const { model, engine, year, plate, category, km, fuelCapacity, image} = req.body;
          
          const userId = req.user?.id;
          
@@ -24,6 +24,7 @@ export class CarController {
             model,
             engine,
             year,
+            plate,
             category,
             km,
             fuelCapacity,

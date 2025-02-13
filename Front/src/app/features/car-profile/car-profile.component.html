@@ -17,7 +17,7 @@
         </div>
       </p-card>
 
-      <p-card header="Last Month Information" class="p-6 shadow-md rounded-lg" *ngIf="isCarousel()" [formGroup]="formGroup">
+      <p-card header="Period Information" class="p-6 shadow-md rounded-lg" *ngIf="isCarousel()" [formGroup]="formGroup">
         <p-selectbutton 
           [options]="monthsOptions" 
           formControlName="months" 
@@ -40,7 +40,14 @@
         </p-carousel>
       </p-card>
 
-      <p-card header="Fuel History" class="w-full p-6 shadow-md rounded-lg">
+      <p-card header="Fuel History" class="w-full p-6 shadow-md rounded-lg" [formGroup]="formGroup">
+        <p-selectbutton 
+          [options]="monthsOptions" 
+          formControlName="monthsHistory" 
+          optionLabel="label" 
+          optionValue="value" 
+          class="w-full flex justify-center mb-4"
+        />
         <div *ngIf="fuelHistory?.length; else noFuelHistory" class="flex flex-col gap-3">
           <div *ngFor="let fuel of fuelHistory" class="p-2 border-b">
             <p class="text-sm text-gray-700"><b>Date:</b> {{ fuel.date }}</p>

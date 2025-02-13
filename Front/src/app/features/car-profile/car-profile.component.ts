@@ -50,7 +50,8 @@ export class CarProfileComponent implements OnInit {
     private fuelService: FuelService,
     private route: ActivatedRoute) {
       this.formGroup = this.fb.group({
-        months: 1
+        months: 1,
+        monthsHistory: 1
       });
   }
 
@@ -61,11 +62,17 @@ export class CarProfileComponent implements OnInit {
     this.formGroup.get('months')?.valueChanges.subscribe({
       next: (value) => {
         this.getCarInfo(value);
+      },
+    });
+
+    this.formGroup.get('monthsHistory')?.valueChanges.subscribe({
+      next: (value) => {
         this.loadFuelHistory(value);
       },
     });
 
     this.formGroup.get('months')?.setValue(1);
+    this.formGroup.get('monthsHistory')?.setValue(1);
   }
 
   getCarInfo(months: any) {

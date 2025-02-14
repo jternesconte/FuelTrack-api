@@ -14,6 +14,8 @@ import { PasswordModule } from 'primeng/password';
 import { userLoginDto, UserRegisterDto } from '../../shared/interfaces/UserDto';
 import { Router } from '@angular/router';
 import { PanelModule } from 'primeng/panel';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -33,7 +35,9 @@ import { PanelModule } from 'primeng/panel';
     PasswordModule,
     ReactiveFormsModule,
     FormsModule,
-    PanelModule]
+    PanelModule,
+    ToastModule],
+    providers: [MessageService]
 })
 export class LoginPageComponent implements OnInit {
 
@@ -45,7 +49,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.formGroup = this.fb.group({
       name:[''],
@@ -70,11 +75,12 @@ export class LoginPageComponent implements OnInit {
     
     this.userService.userLogin(this.loginData).subscribe({
       next: (value) => {
+          this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Successfully logged' });
           localStorage.setItem('token', value['token']);
           this.router.navigate(['/userCars']);
       },
       error: (err) => {
-          console.log(err);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: err.error.error });
       },
     });
   }

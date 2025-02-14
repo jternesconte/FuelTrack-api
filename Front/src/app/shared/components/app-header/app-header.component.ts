@@ -46,12 +46,7 @@ export class AppHeaderComponent implements OnInit {
           this.router.navigate(['/login']);
       },
       reject: () => {
-          this.messageService.add({
-              severity: 'error',
-              summary: 'Rejected',
-              detail: 'You have rejected',
-              life: 3000,
-          });
+          
       },
     });
   }

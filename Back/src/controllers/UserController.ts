@@ -32,17 +32,29 @@ export class UserController {
             return;
          }
 
-         const senhaHashed = await bcrypt.hash(password, 10);
+         const hashedPassword = await bcrypt.hash(password, 10);
 
-         const newUsuario: IUser = {
+         const newUser: IUser = {
             name,
             email,
-            password: senhaHashed
+            password: hashedPassword
          };
 
-         await userRepository.save(newUsuario);
+         await userRepository.save(newUser);
 
-         res.status(201).json({ msg: 'User succesfully registered' });
+         const createdUser = await userRepository.findOneBy({ email: newUser.email });
+         if(!createdUser) {
+            res.status(404).json({ error: 'Error in User Register' });
+            return;
+         }
+
+         const secret = process.env.SECRET_KEY as string;
+
+         const token = jwt.sign({ userId: createdUser.id }, secret, {
+            expiresIn:'7d'
+         });
+
+         res.status(201).json({ msg: 'User succesfully registered', token });
       } catch {
          res.status(500).json({ error: 'Error in User Register' });
       }

@@ -6,16 +6,18 @@ import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-user-cars',
   templateUrl: './user-cars.component.html',
   styleUrls: ['./user-cars.component.css', '../../../styles.css'],
-  imports: [CardModule, CommonModule, ButtonModule]
+  imports: [CardModule, CommonModule, ButtonModule, MessageModule]
 })
 export class UserCarsComponent implements OnInit {
 
   carObservable!: Observable<CarDto[]>;
+  isCarsEmpty: boolean = false;
 
   constructor(
     private carService: CarService,
@@ -24,6 +26,11 @@ export class UserCarsComponent implements OnInit {
 
   ngOnInit() {
     this.carObservable =  this.carService.getUserCars();
+    this.carObservable.forEach(r => {
+      if (r.length === 0) {
+        this.isCarsEmpty = true;
+      }
+    })
   }
 
   onMoreDetails(carId: number) {

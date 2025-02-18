@@ -146,4 +146,31 @@ export class FuelController {
     }
   }
 
+  async calculateDistanceFuel(req: Request, res: Response) {
+    try {
+      const { distance } = req.body;
+      const { carId } = req.params;
+
+      const car = await carRepository.findOneBy({ id: Number(carId) });
+
+      if(!car) {
+        res.status(404).json({ error: 'Car not found with id: ' + carId });
+        return;
+      }
+
+      const carAverage = await fuelRepository.average('averageLastRoute', { car: { id: car.id } });
+
+      if(!carAverage) {
+        res.status(404).json({ error: 'Car without fuels' });
+        return;
+      }
+
+      const fuelNeeded = Number((distance / carAverage).toFixed(2));
+
+      res.status(200).json( fuelNeeded );
+    } catch {
+      res.status(500).json({ error: 'Error calculating the fuel for distance.' })
+    }
+  }
+
 }

@@ -9,22 +9,21 @@
         [src]="car.image" 
         alt="Car Image" 
         class="h-72 w-72 object-cover rounded-lg shadow-md transition-transform hover:scale-105">
+
+        <div class="p-6 bg-white rounded-lg shadow-md mt-4">
+          <h3 class="font-semibold text-lg text-[#1E293B] mb-4 text-center">Car Information</h3>
+          <div class="grid grid-cols-2 gap-4 text-[#1E293B] justify-items-center">
+            <p><b class="font-medium">Year:</b> {{ car.year }}</p>
+            <p><b class="font-medium">Category:</b> {{ car.category }}</p>
+            <p><b class="font-medium">KM:</b> {{ car.km }}</p>
+            <p><b class="font-medium">Fuel Capacity:</b> {{ car.fuelCapacity }}</p>
+          </div>
+        </div>
     </div>
 
     <div class="flex flex-col gap-8 w-full">
-
-      <div class="p-6 bg-white rounded-lg shadow-md">
-        <h3 class="font-semibold text-lg text-[#1E293B] mb-4">Car Information</h3>
-        <div class="grid grid-cols-2 gap-4 text-[#1E293B]">
-          <p><b class="font-medium">Year:</b> {{ car.year }}</p>
-          <p><b class="font-medium">Category:</b> {{ car.category }}</p>
-          <p><b class="font-medium">KM:</b> {{ car.km }}</p>
-          <p><b class="font-medium">Fuel Capacity:</b> {{ car.fuelCapacity }}</p>
-        </div>
-      </div>
-
       <div *ngIf="isCarousel()" [formGroup]="formGroup" class="p-6 bg-white rounded-lg shadow-md">
-        <h3 class="font-semibold text-lg text-[#1E293B] mb-4">Period Information</h3>
+        <h3 class="font-semibold text-lg text-[#1E293B] mb-4 text-center">Period Information</h3>
         <p-selectbutton 
           [options]="monthsOptions" 
           formControlName="months" 
@@ -48,7 +47,7 @@
       </div>
 
       <div [formGroup]="formGroup" class="p-6 bg-white rounded-lg shadow-md">
-        <h3 class="font-semibold text-lg text-[#1E293B] mb-4">Fuel History</h3>
+        <h3 class="font-semibold text-lg text-[#1E293B] mb-4 text-center">Fuel History</h3>
         <p-selectbutton 
           [options]="monthsOptions" 
           formControlName="monthsHistory" 

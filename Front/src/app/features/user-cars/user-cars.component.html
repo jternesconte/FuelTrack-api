@@ -13,7 +13,7 @@
               <p-button class="w-24" label="Details" (onClick)="onMoreDetails(car.id)"></p-button>
               <p-button class="w-24" label="Fuel" (onClick)="onFuel(car.id)"></p-button>
             </div>
-            <p-button class="w-full" label="FuelCalculate" (click)="showDialog(car)" />
+            <p-button class="w-full" label="Fuel Calculate" (click)="showDialog(car)" />
           </div>
         </div>
       </p-card>
@@ -28,23 +28,41 @@
 <p-dialog [(visible)]="calculateVisible" [modal]="true" [style]="{ width: '25rem' }">
   <ng-template #header>
       <div class="inline-flex items-center justify-center gap-2">
-          <p-avatar [image]="carImage()" shape="circle" />
+          <p-avatar [image]="carImage()" shape="circle"/>
           <span class="font-bold whitespace-nowrap">{{ carModel() }}</span>
       </div>
   </ng-template>
   <span class="text-surface-500 dark:text-surface-400 block mb-8">Calculate fuel needed for a route</span>
   <div class="flex items-center gap-4 mb-4" [formGroup]="formGroup">
       <label for="distance" class="font-semibold w-24">Distance</label>
-      <input pInputText id="distance" class="flex-auto" autocomplete="off" formControlName="travelDistance"/>
+      <p-inputnumber id="distance" class="flex-auto" formControlName="travelDistance" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5"/>
   </div>
   <ng-template #footer>
-      <p-button label="Cancel" [text]="true" severity="secondary" (click)="calculateVisible = false" />
-      <p-button label="Calculate" [outlined]="true" severity="secondary" (click)="calculateFuel()" />
+      <p-button label="Cancel" severity="danger" (click)="calculateVisible = false" />
+      <p-button label="Calculate" (click)="calculateFuel()" />
   </ng-template>
 </p-dialog>
 
 <p-dialog [(visible)]="resultVisible" [modal]="true" [style]="{ width: '25rem' }">
-<div class="flex items-center gap-4 mb-4">
-  <p>{{ fuelForDistance() }}</p>
-</div>
+  <ng-template pTemplate="header">
+    <h3 class="text-lg font-semibold text-[#1E293B]">Fuel Calculation</h3>
+  </ng-template>
+
+  <div class="flex flex-col items-center text-center p-4 gap-3">
+    <p class="text-gray-700 text-base">
+      To travel the requested distance, you need approximately:
+    </p>
+    <p class="text-2xl font-bold text-[#1E293B]">
+      {{ fuelForDistance() }} liters
+    </p>
+    <p class="text-sm text-gray-500">
+      Make sure you have enough fuel before starting your trip.
+    </p>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-end gap-2">
+      <button pButton label="Close" icon="pi pi-times" (click)="resultVisible = false" class="p-button-text"></button>
+    </div>
+  </ng-template>
 </p-dialog>

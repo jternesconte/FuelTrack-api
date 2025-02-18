@@ -8,9 +8,12 @@
       <p-card class="flex flex-row justify-center w-full" [header]="car.model + ' ' + car.engine">
         <div class="flex flex-col gap-3">
           <img [src]="car.image" alt="Car Image" class="h-52 w-52 object-cover">
-          <div class="flex flex-row w-full justify-between">
-            <p-button class="w-24" label="Details" (onClick)="onMoreDetails(car.id)"></p-button>
-            <p-button class="w-24" label="Fuel" (onClick)="onFuel(car.id)"></p-button>
+          <div class="flex flex-col gap-2">
+            <div class="flex flex-row w-full justify-between">
+              <p-button class="w-24" label="Details" (onClick)="onMoreDetails(car.id)"></p-button>
+              <p-button class="w-24" label="Fuel" (onClick)="onFuel(car.id)"></p-button>
+            </div>
+            <p-button class="w-full" label="FuelCalculate" (click)="showDialog(car)" />
           </div>
         </div>
       </p-card>
@@ -21,3 +24,27 @@
     <p-message severity="warn" size="large">Your car list is empty</p-message>
   </div>
 }
+
+<p-dialog [(visible)]="calculateVisible" [modal]="true" [style]="{ width: '25rem' }">
+  <ng-template #header>
+      <div class="inline-flex items-center justify-center gap-2">
+          <p-avatar [image]="carImage()" shape="circle" />
+          <span class="font-bold whitespace-nowrap">{{ carModel() }}</span>
+      </div>
+  </ng-template>
+  <span class="text-surface-500 dark:text-surface-400 block mb-8">Calculate fuel needed for a route</span>
+  <div class="flex items-center gap-4 mb-4" [formGroup]="formGroup">
+      <label for="distance" class="font-semibold w-24">Distance</label>
+      <input pInputText id="distance" class="flex-auto" autocomplete="off" formControlName="travelDistance"/>
+  </div>
+  <ng-template #footer>
+      <p-button label="Cancel" [text]="true" severity="secondary" (click)="calculateVisible = false" />
+      <p-button label="Calculate" [outlined]="true" severity="secondary" (click)="calculateFuel()" />
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="resultVisible" [modal]="true" [style]="{ width: '25rem' }">
+<div class="flex items-center gap-4 mb-4">
+  <p>{{ fuelForDistance() }}</p>
+</div>
+</p-dialog>

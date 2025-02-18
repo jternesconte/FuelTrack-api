@@ -1,7 +1,6 @@
 <div *ngIf="carObservable | async as car" class="flex justify-center p-6">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start w-full max-w-6xl">
 
-    <!-- Seção da Imagem e Título -->
     <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
       <h2 class="text-2xl font-semibold text-[#1E293B] mb-4">
         {{ car.model }} - {{ car.engine }}
@@ -12,10 +11,8 @@
         class="h-72 w-72 object-cover rounded-lg shadow-md transition-transform hover:scale-105">
     </div>
 
-    <!-- Seção de Informações -->
     <div class="flex flex-col gap-8 w-full">
 
-      <!-- Informações do Carro -->
       <div class="p-6 bg-white rounded-lg shadow-md">
         <h3 class="font-semibold text-lg text-[#1E293B] mb-4">Car Information</h3>
         <div class="grid grid-cols-2 gap-4 text-[#1E293B]">
@@ -26,7 +23,6 @@
         </div>
       </div>
 
-      <!-- Informações de Período (Caso o Carousel seja necessário) -->
       <div *ngIf="isCarousel()" [formGroup]="formGroup" class="p-6 bg-white rounded-lg shadow-md">
         <h3 class="font-semibold text-lg text-[#1E293B] mb-4">Period Information</h3>
         <p-selectbutton 
@@ -51,7 +47,6 @@
         </p-carousel>
       </div>
 
-      <!-- Histórico de Combustível -->
       <div [formGroup]="formGroup" class="p-6 bg-white rounded-lg shadow-md">
         <h3 class="font-semibold text-lg text-[#1E293B] mb-4">Fuel History</h3>
         <p-selectbutton 

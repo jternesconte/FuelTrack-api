@@ -17,6 +17,7 @@ Welcome to the **FuelTrack**, a robust application developed using **Node.js** w
 - ✔️ Calculate average consumption.  
 - ⚖️ Measure total distance traveled in a given period.  
 - ⛽ Total liters used within a selected timeframe.  
+- 🛣️ Calculate the liters needed to travel a specific distance based on consumption average.
 
 ### **Authorization**  
 - 🛠️ Implementing login screen.  
@@ -33,7 +34,8 @@ Welcome to the **FuelTrack**, a robust application developed using **Node.js** w
 
 ### **Front-end**  
 - **AngularJS**: Framework for building dynamic web applications.
-- **Tailwind**: Framework for style web pages.  
+- **Tailwind**: Framework for styling web pages.  
+- **PrimeNG**: UI components for enhancing the user interface and experience.
 
 ### **Back-end**  
 - **Node.js**: JavaScript runtime for server-side development.  
@@ -41,8 +43,8 @@ Welcome to the **FuelTrack**, a robust application developed using **Node.js** w
 
 ### **Database**  
 - **PostgreSQL**: Relational database for storing car, fuel, and user data.  
-- **TypeORM**: ORM to simplify database management and manipulation in Nodejs.  
+- **TypeORM**: ORM to simplify database management and manipulation in Node.js.  
 
 ### **Others**  
-- **npm**: Package manager for installing and managing dependencies.  
+- **npm**: Package manager for installing and managing dependencies.
 

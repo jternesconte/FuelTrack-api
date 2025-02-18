@@ -23,4 +23,8 @@ export class FuelService {
   getFuelHistory(carId: number, months: number): Observable<FuelHistory[]> {
     return this.http.get<FuelHistory[]>(`http://localhost:3000/api/fuel/history/${carId}/${months}`);
   }
+
+  getFuelCalculate(carId: number, distanceData: any): Observable<number> {
+    return this.http.post<number>(`http://localhost:3000/api/fuel/calculateFuel/${carId}`, distanceData);
+  }
 }

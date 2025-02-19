@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Car } from "./Car";
+import { BooleanToStringConverter } from "../utils/BooleanToStringConverter";
 
 @Entity('oil')
 export class Oil {
@@ -16,5 +17,13 @@ export class Oil {
    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", nullable: false })
    date: Date;
 
-   flChangedFilters: boolean
+   @Column({
+      name: "fl_changed_filters",
+      type: "char",
+      length: 1,
+      nullable: false,
+      default: 'N',
+      transformer: new BooleanToStringConverter(),
+    })
+   flChangedFilters: boolean;
 }

@@ -4,6 +4,8 @@ import { carRoutes } from './routes/CarRoutes';
 import { fuelRoutes } from './routes/FuelRoutes';
 import cors from 'cors';
 import { userRoutes } from './routes/UserRoutes';
+import { oilRoutes } from './routes/OilRoutes';
+import { ipvaRoutes } from './routes/IpvaRoutes';
 
 AppDataSource.initialize().then(() => {
    const app = express();
@@ -28,7 +30,9 @@ AppDataSource.initialize().then(() => {
 
    app.use('/api/car', carRoutes);
    app.use('/api/fuel', fuelRoutes);
-   app.use('/api/user', userRoutes)
+   app.use('/api/user', userRoutes);
+   app.use('/api/oil', oilRoutes);
+   app.use('/api/ipva', ipvaRoutes);
 
    return app.listen(process.env.PORT);
 });

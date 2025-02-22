@@ -14,6 +14,9 @@ export class Oil {
    @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
    price: number;
 
+   @Column({ name: "car_km",  type: "decimal", precision: 12, scale: 1, default: 0, nullable: false })
+   carKm: number;
+
    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", nullable: false })
    date: Date;
 

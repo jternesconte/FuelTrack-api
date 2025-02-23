@@ -14,5 +14,12 @@ export const oilRepository = AppDataSource.getRepository(Oil).extend({
       });
    
       return this.save(oil);
-    }
+    },
+
+   async findLastDate(carId: number) {
+      return this.createQueryBuilder('oil')
+         .where('oil.car_id = :carId', { carId })
+         .orderBy('oil.date', 'DESC')
+         .getOne();
+   }
 })

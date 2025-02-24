@@ -20,6 +20,9 @@ export class Oil {
    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", nullable: false })
    date: Date;
 
+   @Column({ name: "oil_type", type: "varchar", length: 100, nullable: false })
+   oilType: string;
+
    @Column({
       name: "fl_changed_filters",
       type: "char",

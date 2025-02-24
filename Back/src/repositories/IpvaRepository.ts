@@ -7,7 +7,6 @@ export const ipvaRepository = AppDataSource.getRepository(Ipva).extend({
       const ipva = this.create({
          car: data.car,
          price: data.price,
-         oilType: data.oilType,
          date: data.date,
       });
    

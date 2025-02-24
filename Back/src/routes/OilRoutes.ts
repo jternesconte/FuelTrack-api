@@ -7,3 +7,5 @@ export const oilRoutes = Router();
 oilRoutes.use(authenticateToken);
 
 oilRoutes.post('/change/:carId', new OilController().newOilChange);
+
+oilRoutes.delete('/deleteChange/:oilId', new OilController().removeOilChange);

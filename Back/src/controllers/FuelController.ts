@@ -146,6 +146,31 @@ export class FuelController {
     }
   }
 
+  async deleteFuel(req: Request, res: Response) {
+    try {
+      const { fuelId } = req.params;
+
+      const fuel = await fuelRepository.findOne({
+        where: { id: Number(fuelId) },
+        relations: ["car", "car.user"]
+      });
+
+      if(!fuel) {
+        res.status(404).json({ error: `Fuel not found with id: ${fuelId}` });
+        return;
+      }
+
+      if(fuel.car.user.id !== req.user?.id) {
+        res.status(403).json({ error: 'Unauthorized to delete this fuel record' });
+        return;
+      }
+
+      await fuelRepository.remove(fuel);
+    } catch {
+      res.status(500).json({ error: 'Error deleting fuel' });
+    }
+  }
+
   async calculateDistanceFuel(req: Request, res: Response) {
     try {
       const { distance } = req.body;

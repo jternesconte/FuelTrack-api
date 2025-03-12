@@ -6,7 +6,7 @@ import { CarDto } from '../../shared/interfaces/CarDto';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FuelService } from '../../shared/services/fuel.service';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectButton, SelectButtonModule } from 'primeng/selectbutton';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -48,7 +48,8 @@ export class CarProfileComponent implements OnInit {
     private carService: CarService,
     private fb: FormBuilder,
     private fuelService: FuelService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
       this.formGroup = this.fb.group({
         months: 1,
         monthsHistory: 1
@@ -92,4 +93,11 @@ export class CarProfileComponent implements OnInit {
     });
   }
 
+  navigateToOilRegister() {
+    this.router.navigate([`/oilChange/${this.carId}`]);
+  }
+  
+  navigateToIpvaRegister() {
+    this.router.navigate([`/ipva/${this.carId}`]);
+  }
 }

@@ -54,7 +54,6 @@ export class FuelController {
 
       const currentMonthStartDate = new Date();
       currentMonthStartDate.setMonth(currentMonthStartDate.getMonth() - numMonths);
-      currentMonthStartDate.setDate(1);
       currentMonthStartDate.setHours(0, 0, 0, 0);
 
       const currentMonthEndDate = new Date();

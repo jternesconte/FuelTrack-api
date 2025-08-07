@@ -9,7 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FuelDto } from '../../shared/interfaces/FuelDto';
 import { FuelService } from '../../shared/services/fuel.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-fuel-register',
@@ -26,7 +26,8 @@ export class FuelRegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private fuelService: FuelService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.formGroup = this.fb.group({
       price:[],
@@ -60,7 +61,7 @@ export class FuelRegisterComponent implements OnInit {
 
     this.fuelService.createFuel(this.newFuel, this.carId).subscribe({
       next: (value) => {
-          
+          this.router.navigate(['/userCars']);
       },
       error: (err) => {
           console.log(err)

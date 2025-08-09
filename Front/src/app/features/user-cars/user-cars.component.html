@@ -1,68 +1,198 @@
-<div class="flex justify-center mb-4">
-  <p-button label="Add Car" class="w-36 mt-4" (click)="onCreateCar()"></p-button>
-</div>
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-8 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4">My Vehicles</h1>
+      <p class="text-gray-600 mb-6">Manage and track your vehicle fleet</p>
 
-@if(!isCarsEmpty) {
-  <div *ngIf="carObservable | async as cars" class="mt-4 car-grid-container">
-    @for (car of cars; track $index) {
-      <p-card class="flex flex-row justify-center w-full" [header]="car.model + ' ' + car.engine">
-        <div class="flex flex-col gap-3">
-          <img [src]="car.image" alt="Car Image" class="h-52 w-52 object-cover">
-          <div class="flex flex-col gap-2">
-            <div class="flex flex-row w-full justify-between">
-              <p-button class="w-24" label="Details" (onClick)="onMoreDetails(car.id)"></p-button>
-              <p-button class="w-24" label="Fuel" (onClick)="onFuel(car.id)"></p-button>
+      <div class="inline-flex">
+        <p-button
+          label="Add New Vehicle"
+          class="px-8 py-3"
+          icon="pi pi-plus"
+          (click)="onCreateCar()"
+        />
+      </div>
+    </div>
+
+    @if (!isCarsEmpty) {
+      @if (carObservable | async; as cars) {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          @for (car of cars; track $index) {
+            <div class="group">
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="relative overflow-hidden">
+                  <img
+                    [src]="car.image"
+                    alt="Car Image"
+                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+
+                <div class="p-6">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">{{ car.model }}</h3>
+                  <p class="text-gray-600 mb-4">{{ car.engine }}</p>
+
+                  <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="text-center p-2 bg-gray-50 rounded-lg">
+                      <p class="text-xs text-gray-600">Year</p>
+                      <p class="font-semibold text-gray-800">{{ car.year }}</p>
+                    </div>
+                    <div class="text-center p-2 bg-gray-50 rounded-lg">
+                      <p class="text-xs text-gray-600">Category</p>
+                      <p class="font-semibold text-gray-800">{{ car.category }}</p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-3">
+                    <div class="grid grid-cols-2 gap-3 mb-6">
+                      <p-button
+                        label="Details"
+                        severity="secondary"
+                        size="small"
+                        icon="pi pi-info-circle"
+                        (onClick)="onMoreDetails(car.id)"
+                      />
+
+                      <p-button
+                        label="Add Fuel"
+                        size="small"
+                        icon="pi pi-plus"
+                        (onClick)="onFuel(car.id)"
+                      />
+                    </div>
+
+                    <p-button
+                      label="Calculate Fuel"
+                      severity="help"
+                      size="small"
+                      icon="pi pi-calculator"
+                      class="w-full"
+                      (click)="showDialog(car)"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            <p-button class="w-full" label="Fuel Calculate" (click)="showDialog(car)" />
-          </div>
+          }
         </div>
-      </p-card>
+      }
+    } @else {
+      <div class="text-center py-16">
+        <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+          <i class="pi pi-car text-4xl text-gray-400"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">No Vehicles Yet</h3>
+        <p class="text-gray-600 mb-8 max-w-md mx-auto">
+          Start tracking your fuel consumption by adding your first vehicle to the system.
+        </p>
+        <p-button
+          label="Add Your First Vehicle"
+          icon="pi pi-plus"
+          size="large"
+          (click)="onCreateCar()"
+        />
+      </div>
     }
   </div>
-} @else {
-  <div class="flex justify-center w-full">
-    <p-message severity="warn" size="large">Your car list is empty</p-message>
-  </div>
-}
 
-<p-dialog [(visible)]="calculateVisible" [modal]="true" [style]="{ width: '25rem' }">
-  <ng-template #header>
-      <div class="inline-flex items-center justify-center gap-2">
-          <p-avatar [image]="carImage()" shape="circle"/>
-          <span class="font-bold whitespace-nowrap">{{ carModel() }}</span>
+  <p-dialog
+    [(visible)]="calculateVisible"
+    [modal]="true"
+    [style]="{ width: '28rem' }"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <ng-template #header>
+      <div class="flex items-center gap-3">
+        <p-avatar [image]="carImage()" shape="circle" size="large" />
+        <div>
+          <h3 class="font-bold text-lg">{{ carModel() }}</h3>
+          <p class="text-sm text-gray-600">Fuel Calculator</p>
+        </div>
       </div>
-  </ng-template>
-  <span class="text-surface-500 dark:text-surface-400 block mb-8">Calculate fuel needed for a route</span>
-  <div class="flex items-center gap-4 mb-4" [formGroup]="formGroup">
-      <label for="distance" class="font-semibold w-24">Distance</label>
-      <p-inputnumber id="distance" class="flex-auto" formControlName="travelDistance" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5"/>
-  </div>
-  <ng-template #footer>
-      <p-button label="Cancel" severity="danger" (click)="calculateVisible = false" />
-      <p-button label="Calculate" (click)="calculateFuel()" />
-  </ng-template>
-</p-dialog>
+    </ng-template>
 
-<p-dialog [(visible)]="resultVisible" [modal]="true" [style]="{ width: '25rem' }">
-  <ng-template pTemplate="header">
-    <h3 class="text-lg font-semibold text-[#1E293B]">Fuel Calculation</h3>
-  </ng-template>
+    <div class="py-4">
+      <p class="text-gray-600 mb-6">
+        Calculate the fuel needed for your planned trip
+      </p>
 
-  <div class="flex flex-col items-center text-center p-4 gap-3">
-    <p class="text-gray-700 text-base">
-      To travel the requested distance, you need approximately:
-    </p>
-    <p class="text-2xl font-bold text-[#1E293B]">
-      {{ fuelForDistance() }} liters
-    </p>
-    <p class="text-sm text-gray-500">
-      Make sure you have enough fuel before starting your trip.
-    </p>
-  </div>
-
-  <ng-template pTemplate="footer">
-    <div class="flex justify-end gap-2">
-      <button pButton label="Close" icon="pi pi-times" (click)="resultVisible = false" class="p-button-text"></button>
+      <div [formGroup]="formGroup" class="space-y-4">
+        <div class="flex items-center gap-4">
+          <label for="distance" class="font-semibold w-20 text-gray-700">Distance</label>
+          <p-inputnumber
+            id="distance"
+            class="flex-1"
+            formControlName="travelDistance"
+            mode="decimal"
+            [minFractionDigits]="2"
+            [maxFractionDigits]="5"
+            suffix=" km"
+            placeholder="Enter distance"
+          />
+        </div>
+      </div>
     </div>
-  </ng-template>
-</p-dialog>
+
+    <ng-template #footer>
+      <div class="flex gap-3">
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          (click)="calculateVisible = false"
+        />
+        <p-button
+          label="Calculate"
+          icon="pi pi-calculator"
+          (click)="calculateFuel()"
+        />
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog
+    [(visible)]="resultVisible"
+    [modal]="true"
+    [style]="{ width: '28rem' }"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <ng-template pTemplate="header">
+      <h3 class="text-xl font-bold text-gray-800">
+        Fuel Calculation Result
+      </h3>
+    </ng-template>
+
+    <div class="text-center py-6">
+      <div class="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+        <i class="pi pi-check text-2xl text-blue-600"></i>
+      </div>
+
+      <p class="text-gray-600 mb-4">
+        For your planned trip, you will need approximately:
+      </p>
+
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-4">
+        <p class="text-3xl font-bold text-blue-600 mb-2">
+          {{ fuelForDistance() }} L
+        </p>
+        <p class="text-sm text-gray-600">of fuel</p>
+      </div>
+
+      <p class="text-sm text-gray-500">
+        Make sure your tank has enough fuel before starting your journey.
+      </p>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <div class="flex justify-center">
+        <p-button
+          label="Close"
+          icon="pi pi-times"
+          (click)="resultVisible = false"
+        />
+      </div>
+    </ng-template>
+  </p-dialog>
+</div>

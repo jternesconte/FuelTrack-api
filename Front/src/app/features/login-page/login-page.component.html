@@ -1,66 +1,116 @@
-<div class="flex justify-center items-center h-screen w-full" [formGroup]="formGroup">
-  <p-panel class="w-full max-w-lg p-4">
-    
-    <p-tabs [value]="0">
-      
-      <p-tablist class="flex">
-        <p-tab [value]="0" class="w-1/2 text-center">Sign-in</p-tab>
-        <p-tab [value]="1" class="w-1/2 text-center">Sign-up</p-tab>
-      </p-tablist>
-      
-      <p-tabpanels>
-        
-        <p-tabpanel [value]="0">
-          <p-toast  />
-          <div class="flex flex-col gap-6 mt-6">
-            
-            <p-floatlabel>
-              <input class="w-full p-2 border border-gray-300 rounded-lg" type="text" id="email" pInputText (keyup.enter)="onLoginSubmit()" formControlName="email"/>
-              <label for="email">Email</label>  
-            </p-floatlabel>
+<div class="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 flex items-center justify-center py-8 px-4">
+  <div class="w-full max-w-md">
+    <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden">
+      <div class="text-center py-8 px-8">
+        <div class="mx-auto w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
+          <i class="pi pi-car text-white text-2xl"></i>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-800">FuelTrack</h1>
+        <p class="text-gray-600 mt-2">Manage your vehicle's fuel consumption</p>
+      </div>
 
-            <p-floatlabel>
-              <p-password class="w-full" id="password" [feedback]="false" (keyup.enter)="onLoginSubmit()" formControlName="password"/>
-              <label for="password">Password</label>  
-            </p-floatlabel>
-
-            <p-button label="Login" (onClick)="onLoginSubmit()" class="text-white w-full py-2 rounded-lg"/>
+      <div [formGroup]="formGroup">
+        <p-tabs [value]="0" class="px-8">
+          <p-tablist class="flex w-full">
+            <p-tab [value]="0" class="flex-1 text-center">
+              <span class="font-semibold">Sign In</span>
+            </p-tab>
+            <p-tab [value]="1" class="flex-1 text-center">
+              <span class="font-semibold">Sign Up</span>
+            </p-tab>
+          </p-tablist>
           
-          </div>
-        </p-tabpanel>
-        
-        <p-tabpanel [value]="1">
-          <p-toast  />
-          <div class="flex flex-col gap-6 mt-6">
+          <p-tabpanels>
+            <p-tabpanel [value]="0">
+              <p-toast />
+              <div class="flex flex-col space-y-6 pb-8">
+                <div class="space-y-4">
+                  <p-floatlabel>
+                    <input 
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                      type="email" 
+                      id="email" 
+                      pInputText 
+                      (keyup.enter)="onLoginSubmit()" 
+                      formControlName="email" />
+                    <label for="email">Email Address</label>  
+                  </p-floatlabel>
+
+                  <p-floatlabel>
+                    <p-password 
+                      class="w-full" 
+                      id="password" 
+                      [feedback]="false" 
+                      (keyup.enter)="onLoginSubmit()" 
+                      formControlName="password" />
+                    <label for="password">Password</label>  
+                  </p-floatlabel>
+                </div>
+
+                <p-button 
+                  label="Sign In" 
+                  (onClick)="onLoginSubmit()" 
+                  class="w-full"
+                  icon="pi pi-sign-in" />
+              </div>
+            </p-tabpanel>
             
-            <p-floatlabel>
-              <input class="w-full p-2 border border-gray-300 rounded-lg" type="text" pInputText formControlName="name"/>
-              <label for="name">Name</label>  
-            </p-floatlabel>
+            <p-tabpanel [value]="1">
+              <p-toast />
+              <div class="flex flex-col space-y-6 pb-8">
+                <div class="space-y-4">
+                  <p-floatlabel>
+                    <input 
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                      type="text" 
+                      pInputText 
+                      formControlName="name" />
+                    <label for="name">Full Name</label>  
+                  </p-floatlabel>
 
-            <p-floatlabel>
-              <input class="w-full p-2 border border-gray-300 rounded-lg" type="text" id="email" pInputText formControlName="email"/>
-              <label for="email">Email</label>  
-            </p-floatlabel>
+                  <p-floatlabel>
+                    <input 
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                      type="email" 
+                      id="email" 
+                      pInputText 
+                      formControlName="email" />
+                    <label for="email">Email Address</label>  
+                  </p-floatlabel>
 
-            <p-floatlabel>
-              <p-password class="w-full" id="password" [feedback]="false" formControlName="password"/>
-              <label for="password">Password</label>  
-            </p-floatlabel>
+                  <p-floatlabel>
+                    <p-password 
+                      class="w-full" 
+                      id="password" 
+                      [feedback]="false" 
+                      formControlName="password" />
+                    <label for="password">Password</label>  
+                  </p-floatlabel>
 
-            <p-floatlabel>
-              <p-password class="w-full" id="password2" [feedback]="false" formControlName="password2"/>
-              <label for="password2">Confirm Password</label>  
-            </p-floatlabel>
+                  <p-floatlabel>
+                    <p-password 
+                      class="w-full" 
+                      id="password2" 
+                      [feedback]="false" 
+                      formControlName="password2" />
+                    <label for="password2">Confirm Password</label>  
+                  </p-floatlabel>
+                </div>
 
-            <p-button label="Sign Up" (onClick)="onRegisterSubmit()" class="text-white w-full py-2 rounded-lg"/>
-          
-          </div>
-        </p-tabpanel>
-        
-      </p-tabpanels>
-      
-    </p-tabs>
-    
-  </p-panel>
+                <p-button 
+                  label="Create Account" 
+                  (onClick)="onRegisterSubmit()" 
+                  class="w-full"
+                  icon="pi pi-user-plus" />
+              </div>
+            </p-tabpanel>
+          </p-tabpanels>
+        </p-tabs>
+      </div>
+    </div>
+
+    <div class="text-center mt-8">
+      <p class="text-white/80 text-sm">© 2024 FuelTrack. Track your journey efficiently.</p>
+    </div>
+  </div>
 </div>

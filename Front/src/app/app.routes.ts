@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth.guard';
 import { CarProfileComponent } from './features/car-profile/car-profile.component';
 import { LoginPageComponent } from './features/login-page/login-page.component';
 import { UserCarsComponent } from './features/user-cars/user-cars.component';
@@ -18,26 +19,32 @@ export const routes: Routes = [
    },
    {
       path: 'userCars',
-      component: UserCarsComponent
+      component: UserCarsComponent,
+      canActivate: [authGuard]
    },
    {
       path: 'car/:carId',
-      component: CarProfileComponent
+      component: CarProfileComponent,
+      canActivate: [authGuard]
    },
    {
       path: 'fuel/:carId',
-      component: FuelRegisterComponent
+      component: FuelRegisterComponent,
+      canActivate: [authGuard]
    },
    {
       path: 'newCar',
-      component: CarCreateComponent
+      component: CarCreateComponent,
+      canActivate: [authGuard]
    },
    {
       path: 'oilChange/:carId',
-      component: OilChangeComponent
+      component: OilChangeComponent,
+      canActivate: [authGuard]
    },
    {
       path: 'ipva/:carId',
-      component: IpvaRegisterComponent
+      component: IpvaRegisterComponent,
+      canActivate: [authGuard]
    }
 ];

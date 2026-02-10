@@ -37,7 +37,7 @@ import { MessageService } from 'primeng/api';
     FormsModule,
     PanelModule,
     ToastModule],
-    providers: [MessageService]
+  providers: [MessageService]
 })
 export class LoginPageComponent implements OnInit {
 
@@ -53,7 +53,7 @@ export class LoginPageComponent implements OnInit {
     private messageService: MessageService
   ) {
     this.formGroup = this.fb.group({
-      name:[''],
+      name: [''],
       email: [''],
       password: [''],
       password2: ['']
@@ -61,9 +61,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('token')) {
-      this.router.navigate(['/userCars'])
-    }
   }
 
   onLoginSubmit() {
@@ -72,12 +69,11 @@ export class LoginPageComponent implements OnInit {
       email: this.formGroup.get('email')?.value,
       password: this.formGroup.get('password')?.value
     }
-    
+
     this.userService.userLogin(this.loginData).subscribe({
       next: (value) => {
-          this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Successfully logged' });
-          localStorage.setItem('token', value['token']);
-          this.router.navigate(['/userCars']);
+        this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Successfully logged' });
+        this.router.navigate(['/userCars']);
       },
       error: (err) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: err.error.error });
@@ -96,11 +92,9 @@ export class LoginPageComponent implements OnInit {
 
     this.userService.userRegister(this.registerData).subscribe({
       next: (value) => {
-          localStorage.setItem('token', value['token']);
-          this.router.navigate(['/userCars']);
+        this.router.navigate(['/userCars']);
       },
       error: (err) => {
-          console.log(err);
       },
     });
   }

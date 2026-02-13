@@ -30,7 +30,7 @@ export class FuelRegisterComponent implements OnInit {
     private router: Router
   ) {
     this.formGroup = this.fb.group({
-      price:[],
+      price: [],
       liters: [],
       distanceTraveled: [],
       date: ['']
@@ -45,8 +45,8 @@ export class FuelRegisterComponent implements OnInit {
 
   formatDateToISO(date: Date) {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0)
-        .toISOString()
-        .replace('Z', '');
+      .toISOString()
+      .replace('Z', '');
   }
 
   onFuelSubmit() {
@@ -55,16 +55,15 @@ export class FuelRegisterComponent implements OnInit {
     this.newFuel = {
       price: this.formGroup.get('price')?.value,
       liters: this.formGroup.get('liters')?.value,
-      distanceTraveled:this.formGroup.get('distanceTraveled')?.value,
+      distanceTraveled: this.formGroup.get('distanceTraveled')?.value,
       date: this.formatDateToISO(this.formGroup.get('date')?.value)
     }
 
     this.fuelService.createFuel(this.newFuel, this.carId).subscribe({
       next: (value) => {
-          this.router.navigate(['/userCars']);
+        this.router.navigate(['/userCars']);
       },
       error: (err) => {
-          console.log(err)
       },
     });
   }

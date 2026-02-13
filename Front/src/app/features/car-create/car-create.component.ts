@@ -10,7 +10,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CarDto } from '../../shared/interfaces/CarDto';
 import { CarService } from '../../shared/services/car.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SelectModule  } from 'primeng/select';
+import { SelectModule } from 'primeng/select';
 
 interface carModel {
   name: string,
@@ -26,16 +26,16 @@ interface carModel {
 export class CarCreateComponent implements OnInit {
 
   carModels: carModel[] = [
-    {name: 'Hatchback', code: 'Hatchback'},
-    {name: 'Sedan', code: 'Sedan'},
-    {name: 'SUV', code: 'SUV'},
-    {name: 'Coupe', code: 'Coupe'},
-    {name: 'Minivan', code: 'Minivan'},
-    {name: 'Wagon', code: 'Wagon'},
-    {name: 'Convertible', code: 'Convertible'},
+    { name: 'Hatchback', code: 'Hatchback' },
+    { name: 'Sedan', code: 'Sedan' },
+    { name: 'SUV', code: 'SUV' },
+    { name: 'Coupe', code: 'Coupe' },
+    { name: 'Minivan', code: 'Minivan' },
+    { name: 'Wagon', code: 'Wagon' },
+    { name: 'Convertible', code: 'Convertible' },
   ]
 
-  
+
   carForm: FormGroup;
   newCar!: Omit<CarDto, 'id'> | undefined;
 
@@ -56,7 +56,7 @@ export class CarCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -85,10 +85,9 @@ export class CarCreateComponent implements OnInit {
 
     this.carService.newCar(this.newCar).subscribe({
       next: (value) => {
-          this.routerNav.navigate(['/userCars']);
+        this.routerNav.navigate(['/userCars']);
       },
       error: (err) => {
-          console.log(err)
       },
     });
   }

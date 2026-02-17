@@ -1,108 +1,75 @@
-<div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-8 px-4">
+<div class="min-h-full bg-gradient-to-br from-gray-50 to-blue-50 py-8 px-4">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-8">
       <h1 class="text-4xl font-bold text-gray-800 mb-4">My Vehicles</h1>
       <p class="text-gray-600 mb-6">Manage and track your vehicle fleet</p>
 
       <div class="inline-flex">
-        <p-button
-          label="Add New Vehicle"
-          class="px-8 py-3"
-          icon="pi pi-plus"
-          (click)="onCreateCar()"
-        />
+        <p-button label="Add New Vehicle" class="px-8 py-3" icon="pi pi-plus" (click)="onCreateCar()" />
       </div>
     </div>
 
     @if (!isCarsEmpty) {
-      @if (carObservable | async; as cars) {
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          @for (car of cars; track $index) {
-            <div class="group">
-              <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <div class="relative overflow-hidden">
-                  <img
-                    [src]="car.image"
-                    alt="Car Image"
-                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                </div>
+    @if (carObservable | async; as cars) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      @for (car of cars; track $index) {
+      <div class="group">
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="relative overflow-hidden">
+            <img [src]="car.image" alt="Car Image"
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
 
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-gray-800 mb-2">{{ car.model }}</h3>
-                  <p class="text-gray-600 mb-4">{{ car.engine }}</p>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">{{ car.model }}</h3>
+            <p class="text-gray-600 mb-4">{{ car.engine }}</p>
 
-                  <div class="grid grid-cols-2 gap-3 mb-6">
-                    <div class="text-center p-2 bg-gray-50 rounded-lg">
-                      <p class="text-xs text-gray-600">Year</p>
-                      <p class="font-semibold text-gray-800">{{ car.year }}</p>
-                    </div>
-                    <div class="text-center p-2 bg-gray-50 rounded-lg">
-                      <p class="text-xs text-gray-600">Category</p>
-                      <p class="font-semibold text-gray-800">{{ car.category }}</p>
-                    </div>
-                  </div>
-
-                  <div class="space-y-3">
-                    <div class="grid grid-cols-2 gap-3 mb-6">
-                      <p-button
-                        label="Details"
-                        severity="secondary"
-                        size="small"
-                        icon="pi pi-info-circle"
-                        (onClick)="onMoreDetails(car.id)"
-                      />
-
-                      <p-button
-                        label="Add Fuel"
-                        size="small"
-                        icon="pi pi-plus"
-                        (onClick)="onFuel(car.id)"
-                      />
-                    </div>
-
-                    <p-button
-                      label="Calculate Fuel"
-                      severity="help"
-                      size="small"
-                      icon="pi pi-calculator"
-                      class="w-full"
-                      (click)="showDialog(car)"
-                    />
-                  </div>
-                </div>
+            <div class="grid grid-cols-2 gap-3 mb-6">
+              <div class="text-center p-2 bg-gray-50 rounded-lg">
+                <p class="text-xs text-gray-600">Year</p>
+                <p class="font-semibold text-gray-800">{{ car.year }}</p>
+              </div>
+              <div class="text-center p-2 bg-gray-50 rounded-lg">
+                <p class="text-xs text-gray-600">Category</p>
+                <p class="font-semibold text-gray-800">{{ car.category }}</p>
               </div>
             </div>
-          }
+
+            <div class="space-y-3">
+              <div class="grid grid-cols-2 gap-3 mb-6">
+                <p-button label="Details" severity="secondary" size="small" icon="pi pi-info-circle"
+                  (onClick)="onMoreDetails(car.id)" />
+
+                <p-button label="Add Fuel" size="small" icon="pi pi-plus" (onClick)="onFuel(car.id)" />
+              </div>
+
+              <p-button label="Calculate Fuel" severity="help" size="small" icon="pi pi-calculator" class="w-full"
+                (click)="showDialog(car)" />
+            </div>
+          </div>
         </div>
-      }
-    } @else {
-      <div class="text-center py-16">
-        <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-          <i class="pi pi-car text-4xl text-gray-400"></i>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-800 mb-4">No Vehicles Yet</h3>
-        <p class="text-gray-600 mb-8 max-w-md mx-auto">
-          Start tracking your fuel consumption by adding your first vehicle to the system.
-        </p>
-        <p-button
-          label="Add Your First Vehicle"
-          icon="pi pi-plus"
-          size="large"
-          (click)="onCreateCar()"
-        />
       </div>
+      }
+    </div>
+    }
+    } @else {
+    <div class="text-center py-16">
+      <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+        <i class="pi pi-car text-4xl text-gray-400"></i>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-800 mb-4">No Vehicles Yet</h3>
+      <p class="text-gray-600 mb-8 max-w-md mx-auto">
+        Start tracking your fuel consumption by adding your first vehicle to the system.
+      </p>
+      <p-button label="Add Your First Vehicle" icon="pi pi-plus" size="large" (click)="onCreateCar()" />
+    </div>
     }
   </div>
 
-  <p-dialog
-    [(visible)]="calculateVisible"
-    [modal]="true"
-    [style]="{ width: '28rem' }"
-    [draggable]="false"
-    [resizable]="false"
-  >
+  <p-dialog [(visible)]="calculateVisible" [modal]="true" [style]="{ width: '28rem' }" [draggable]="false"
+    [resizable]="false">
     <ng-template #header>
       <div class="flex items-center gap-3">
         <p-avatar [image]="carImage()" shape="circle" size="large" />
@@ -121,43 +88,22 @@
       <div [formGroup]="formGroup" class="space-y-4">
         <div class="flex items-center gap-4">
           <label for="distance" class="font-semibold w-20 text-gray-700">Distance</label>
-          <p-inputnumber
-            id="distance"
-            class="flex-1"
-            formControlName="travelDistance"
-            mode="decimal"
-            [minFractionDigits]="2"
-            [maxFractionDigits]="5"
-            suffix=" km"
-            placeholder="Enter distance"
-          />
+          <p-inputnumber id="distance" class="flex-1" formControlName="travelDistance" mode="decimal"
+            [minFractionDigits]="2" [maxFractionDigits]="5" suffix=" km" placeholder="Enter distance" />
         </div>
       </div>
     </div>
 
     <ng-template #footer>
       <div class="flex gap-3">
-        <p-button
-          label="Cancel"
-          severity="secondary"
-          (click)="calculateVisible = false"
-        />
-        <p-button
-          label="Calculate"
-          icon="pi pi-calculator"
-          (click)="calculateFuel()"
-        />
+        <p-button label="Cancel" severity="secondary" (click)="calculateVisible = false" />
+        <p-button label="Calculate" icon="pi pi-calculator" (click)="calculateFuel()" />
       </div>
     </ng-template>
   </p-dialog>
 
-  <p-dialog
-    [(visible)]="resultVisible"
-    [modal]="true"
-    [style]="{ width: '28rem' }"
-    [draggable]="false"
-    [resizable]="false"
-  >
+  <p-dialog [(visible)]="resultVisible" [modal]="true" [style]="{ width: '28rem' }" [draggable]="false"
+    [resizable]="false">
     <ng-template pTemplate="header">
       <h3 class="text-xl font-bold text-gray-800">
         Fuel Calculation Result
@@ -187,11 +133,7 @@
 
     <ng-template pTemplate="footer">
       <div class="flex justify-center">
-        <p-button
-          label="Close"
-          icon="pi pi-times"
-          (click)="resultVisible = false"
-        />
+        <p-button label="Close" icon="pi pi-times" (click)="resultVisible = false" />
       </div>
     </ng-template>
   </p-dialog>

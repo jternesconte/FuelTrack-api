@@ -43,7 +43,7 @@ export class UserCarsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.carObservable =  this.carService.getUserCars();
+    this.carObservable = this.carService.getUserCars();
     this.carObservable.forEach(r => {
       if (r.length === 0) {
         this.isCarsEmpty = true;
@@ -83,7 +83,6 @@ export class UserCarsComponent implements OnInit {
         this.formGroup.get('travelDistance')?.setValue(null)
       },
       error: (err) => {
-        console.log(err);
       },
     });
   }

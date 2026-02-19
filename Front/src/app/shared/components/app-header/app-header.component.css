@@ -1,11 +1,10 @@
 ::ng-deep .p-toolbar {
-   background-color: #0ea5e9 !important;
+   background-color: var(--p-surface-0) !important;
    border: none !important;
-   border-radius: none !important;
-   border-radius: 0 0 12px 12px !important;
+   border-bottom: 1px solid var(--p-surface-200) !important;
+   border-radius: 0 !important;
 }
 
 ::ng-deep .p-button-text.p-button-plain {
-   color: #1E293B !important;
+   color: var(--p-text-color) !important;
 }
-

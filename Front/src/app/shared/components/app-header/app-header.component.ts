@@ -33,20 +33,19 @@ export class AppHeaderComponent implements OnInit {
       closable: true,
       closeOnEscape: true,
       rejectButtonProps: {
-          label: 'Cancel',
-          severity: 'secondary',
-          outlined: true,
+        label: 'Cancel',
+        severity: 'secondary',
+        outlined: true,
       },
       acceptButtonProps: {
-          label: 'Logout',
+        label: 'Logout',
       },
       accept: () => {
-          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Successfully logout' });
-          localStorage.removeItem('token');
-          this.router.navigate(['/login']);
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Successfully logout' });
+        this.router.navigate(['/login']);
       },
       reject: () => {
-          
+
       },
     });
   }
